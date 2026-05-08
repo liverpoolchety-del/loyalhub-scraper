@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-08T11:35:05.917Z",
+  "updatedAt": "2026-05-08T18:26:44.851Z",
   "date": "2026-05-08",
   "stores": {
     "kaufland": [
@@ -41,8 +41,101 @@
           "https://imgproxy.leaflets.schwarz/2cGqzJku-vUGrxwItH6v4BSikurqQ_xpPy41TzT0mwk/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMDFfMDIxZTUxNTNiZjZmOWVmMTdiODJkN2IwN2Q0MzZlZmUucG5n.jpg",
           "https://imgproxy.leaflets.schwarz/u_gxPNDKh3vBYk26WAeGXRNJdRsO8Sm93NccEXiHTAA/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMDJfYzNjNDBlN2E3MTYxNmRhNjdjODM4MzRiZWFiNjY3NjYucG5n.jpg"
         ]
+      },
+      {
+        "store": "Kaufland",
+        "title": "Kaufland брошура",
+        "thumbnail": "https://imgproxy.leaflets.schwarz/s0imc8kdLA9ephPC-Ga3XLIbZcWNV0uMrHJ_ekbdvTk/rs:fit:150:0:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGRmM2UtNzJhMi03MzA3LTg5ZDQtMmZkY2IzOWQ1MmJkL3BhZ2UtMV9hN2EyY2VkMzg3NmQ2ZTBkMGFjNGFiNzdjN2JkMDYxYS5wbmc.jpg",
+        "url": "https://leaflets.kaufland.com/bg-BG/BG_bg_leaflet1_3100_BG19-FL1/ar/3100",
+        "validFrom": "04.05.2026",
+        "validTo": "10.05.2026",
+        "pages": [
+          "https://imgproxy.leaflets.schwarz/d7M_1JZB-LGbTqvWBDd7wiPX0yk9kP5Ml6A4mkti5no/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGRmM2UtNzJhMi03MzA3LTg5ZDQtMmZkY2IzOWQ1MmJkL3BhZ2UtMl82MDFhZDU4ZDNmNjUxNTY2ZmZlZjliNDkzNGZmM2U4Yy5wbmc.jpg",
+          "https://imgproxy.leaflets.schwarz/v6gFjwNylqEKmK9A1fGIvcwQjaf52vnAyB_AxEPRadY/rs:fit:400:400:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGNmOTQtNzUzNC03NGRiLWE2MWEtNTE5ODBiMTQ4M2FjL3BhZ2UtMDFfZmI3ZDQ4MjJkOThmY2I5ZjEyNDBkZTM4Y2Q2NTllYmMucG5n.jpg",
+          "https://imgproxy.leaflets.schwarz/vMpeXCotEszgTrVHxFWR_4Ome1dHwdx9FZbumIqfgS8/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGRmM2UtNzJhMi03MzA3LTg5ZDQtMmZkY2IzOWQ1MmJkL3BhZ2UtMV9hN2EyY2VkMzg3NmQ2ZTBkMGFjNGFiNzdjN2JkMDYxYS5wbmc.jpg"
+        ]
+      },
+      {
+        "store": "Kaufland",
+        "title": "Kaufland брошура",
+        "thumbnail": "https://imgproxy.leaflets.schwarz/NNgZVVmohOz6WVNsXWS7CVEUBhK7QiCPZmWZ6z0H6Wg/rs:fit:150:0:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGYzMWItM2EzZC03NTMxLThjOTQtZTAyMzg0N2YwNzc4L3BhZ2UtMV82YjY4OTVmY2VlNTdkNTI3ZGY2YmU4YmNlYzU1NTQ4Mi5wbmc.jpg",
+        "url": "https://leaflets.kaufland.com/bg-BG/BG_bg_leaflet2_3100_BG19-FL2/ar/3100",
+        "validFrom": "04.05.2026",
+        "validTo": "10.05.2026",
+        "pages": [
+          "https://imgproxy.leaflets.schwarz/INFVO7fXfdVF-xBOZgW4bw2oAScBhQSKwJn2fgJIBJc/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGYzMWItM2EzZC03NTMxLThjOTQtZTAyMzg0N2YwNzc4L3BhZ2UtM182NDI1YWFmNGI2MmRjMjkzMGQyMjBiN2U0YWMxNTZmNC5wbmc.jpg",
+          "https://imgproxy.leaflets.schwarz/lTZkOGLd3h1DxyGqmiz1UJJr6Jc-CIrMu8m6cF_v8T4/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGYzMWItM2EzZC03NTMxLThjOTQtZTAyMzg0N2YwNzc4L3BhZ2UtMV82YjY4OTVmY2VlNTdkNTI3ZGY2YmU4YmNlYzU1NTQ4Mi5wbmc.jpg",
+          "https://imgproxy.leaflets.schwarz/yKKZQ0lCw72Ms0dXe8Kwku79PdyZOSZd9cK4hVfuV8c/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGYzMWItM2EzZC03NTMxLThjOTQtZTAyMzg0N2YwNzc4L3BhZ2UtMl81MTQ1YjQzNTM5OWExNzJmYjNhZjQ0MjhmNTI1YzFhOC5wbmc.jpg"
+        ]
+      },
+      {
+        "store": "Kaufland",
+        "title": "Kaufland брошура",
+        "thumbnail": "https://imgproxy.leaflets.schwarz/1f3u_8YQrO_Hb2ti_BkmG4QeYjxBYKxXuw9ntqPoWEE/rs:fit:150:0:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGRkYTUtOWNjZC03MWZiLTk3NzktMDhiNTk5OWIyNWZhL3BhZ2UtMV84MzQ5ZWU0ZmY0NDI5NjJjMTRjNjg5NmE4ZjY2YTg3ZC5wbmc.jpg",
+        "url": "https://leaflets.kaufland.com/bg-BG/BG_bg_leaflet4_3100_BG19-FL4/ar/3100",
+        "validFrom": "04.05.2026",
+        "validTo": "10.05.2026",
+        "pages": [
+          "https://imgproxy.leaflets.schwarz/5xOPk-GbgQNbr7qUCLnYKiTUj2F8-fs8zC5XWG0BgJY/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGRkYTUtOWNjZC03MWZiLTk3NzktMDhiNTk5OWIyNWZhL3BhZ2UtM18yZDBmN2IwZTc5MDEwMjhmNjE1MjRmNzY2MGI0MDQxZi5wbmc.jpg",
+          "https://imgproxy.leaflets.schwarz/eTJM-BINh59t5veKMs6FeXGpmqRQfgOmIyhN9mrFobs/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGRkYTUtOWNjZC03MWZiLTk3NzktMDhiNTk5OWIyNWZhL3BhZ2UtMl9lMWM0MTQ4NDhhZGM3MmI3ZDA2ODc4NmRiOTFhMmM1YS5wbmc.jpg",
+          "https://imgproxy.leaflets.schwarz/rZ86Ay9qGwd_R2L0pzTptwk4Ml0w8BijovGgOI3dfu0/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGRkYTUtOWNjZC03MWZiLTk3NzktMDhiNTk5OWIyNWZhL3BhZ2UtMV84MzQ5ZWU0ZmY0NDI5NjJjMTRjNjg5NmE4ZjY2YTg3ZC5wbmc.jpg"
+        ]
       }
     ],
-    "lidl": []
+    "lidl": [
+      {
+        "store": "Lidl",
+        "title": "Lidl брошура",
+        "thumbnail": "https://cdn.cookielaw.org/logos/static/ot_company_logo.png",
+        "url": "https://www.lidl.bg/c/broshura/s10020060",
+        "validFrom": "",
+        "validTo": "",
+        "pages": [
+          "https://cdn.cookielaw.org/logos/static/ot_company_logo.png",
+          "https://cdn.cookielaw.org/logos/static/powered_by_logo.svg",
+          "https://imgproxy.leaflets.schwarz/C3vqWTPpS08upzhgTQ_cROwWQlRuowEwYloJIQlS6IU/rs:fit:400:400:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGNmNTEtYWJkOS03N2YwLWE4NmUtNWIzYmRlMWEwNjc2L3BhZ2UtMDFfNjllYWY5Y2RmYjY1OGMwYzgyZDFlODM4MGRiMDMwNjQucG5n.jpg",
+          "https://imgproxy.leaflets.schwarz/Nbg7DtHP3LUpmbQFFZ6xRyBVQ3RziXdh5YQNoY-0c9U/rs:fit:400:400:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGYyYjQtNjgwZi03ODc3LTkxMDQtMzVjN2QwMGFiZWM4L3BhZ2UtMDFfZjczZDgxMzdhMGUyZmJmMDhkMWYzNDc3MWQwNzYwMmIucG5n.jpg",
+          "https://www.lidl.bg/cdn/assets/6.3.5/icon__sprite.svg",
+          "https://www.lidl.bg/n/footer/icons/arrow-bottom.svg",
+          "https://www.lidl.bg/static/assets/Appgallery_h192-276403.png",
+          "https://www.lidl.bg/static/assets/LidlPlus_promos_1166_874-1642592.jpg",
+          "https://www.lidl.bg/static/assets/Manchev_Badge_192_192_rev1-847920.png",
+          "https://www.lidl.bg/static/assets/Slider_Teaser_1166x874_Anketa-1773282.png",
+          "https://www.lidl.bg/static/assets/Slider_Teaser_1166x874_LidlPlus_KW2434-1107861.jpeg",
+          "https://www.lidl.bg/static/assets/Slider_teaser_1166_874_StenpCard-2131164.jpg",
+          "https://www.lidl.bg/static/assets/Tonchev_Badge_192_192-847902.png",
+          "https://www.lidl.bg/static/assets/Top_Employer_Bulgaria_2026-1982802.png",
+          "https://www.lidl.bg/static/assets/Top_Employer_Europe_2026-1982822.png",
+          "https://www.lidl.bg/static/assets/UPS_Qudal_192x192-1352771.png",
+          "https://www.lidl.bg/static/assets/apple-store-bg-276381.svg",
+          "https://www.lidl.bg/static/assets/google-store-bg-43182-276402.svg",
+          "https://www.lidl.bg/static/assets/logo-1968523.svg",
+          "https://www.lidl.bg/static/assets/slider_teaser-DepositSystem_1166x874px-1625102.jpg"
+        ]
+      },
+      {
+        "store": "Lidl",
+        "title": "Брошура, Информация за клиента, Магазини, Нюзлетър",
+        "thumbnail": "https://cdn.cookielaw.org/logos/static/ot_company_logo.png",
+        "url": "https://www.lidl.bg/c/broshurite-na-lidl/s10017542#",
+        "validFrom": "",
+        "validTo": "",
+        "pages": [
+          "https://cdn.cookielaw.org/logos/static/ot_company_logo.png",
+          "https://cdn.cookielaw.org/logos/static/powered_by_logo.svg",
+          "https://www.lidl.bg/cdn/assets/6.3.5/icon__sprite.svg",
+          "https://www.lidl.bg/n/footer/icons/arrow-bottom.svg",
+          "https://www.lidl.bg/static/assets/Appgallery_h192-276403.png",
+          "https://www.lidl.bg/static/assets/Manchev_Badge_192_192_rev1-847920.png",
+          "https://www.lidl.bg/static/assets/Tonchev_Badge_192_192-847902.png",
+          "https://www.lidl.bg/static/assets/Top_Employer_Bulgaria_2026-1982802.png",
+          "https://www.lidl.bg/static/assets/Top_Employer_Europe_2026-1982822.png",
+          "https://www.lidl.bg/static/assets/UPS_Qudal_192x192-1352771.png",
+          "https://www.lidl.bg/static/assets/apple-store-bg-276381.svg",
+          "https://www.lidl.bg/static/assets/google-store-bg-43182-276402.svg",
+          "https://www.lidl.bg/static/assets/logo-1968523.svg"
+        ]
+      }
+    ]
   }
 }
