@@ -1,0 +1,12 @@
+{
+  "name": "loyalhub-scraper",
+  "version": "1.0.0",
+  "description": "Daily brochure scraper for LoyalHub app",
+  "main": "scraper.js",
+  "scripts": {
+    "scrape": "node scraper.js"
+  },
+  "dependencies": {
+    "playwright": "^1.44.0"
+  }
+}
