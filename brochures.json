@@ -1,8 +1,48 @@
 {
-  "updatedAt": "2026-05-08T05:00:00.000Z",
+  "updatedAt": "2026-05-08T11:35:05.917Z",
   "date": "2026-05-08",
   "stores": {
-    "kaufland": [],
+    "kaufland": [
+      {
+        "store": "Kaufland",
+        "title": "Kaufland: Актуална брошура",
+        "thumbnail": "https://imgproxy.leaflets.schwarz/ogWfa5bRSl344D9_jt_-f5KFh_m6J5Z_41a-jZJv3pU/rs:fit:150:0:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMDFfYmZlOTZhM2IwYWY0NDc0OTA0ODgyYzY2MzUxNWViOTgucG5n.jpg",
+        "url": "https://leaflets.kaufland.com/bg-BG/BG_bg_KDZ_3100_BG19-LFT/ar/3100",
+        "validFrom": "04.05.2026",
+        "validTo": "10.05.2026",
+        "pages": [
+          "https://imgproxy.leaflets.schwarz/XLh-p4-aqRolLRMbxeocPw3AIRVHjWEVRHhkKFn989s/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMDJfOTQyNWE1Njk2MmYyZmU3OWY3ZWM2NDg0ZTEzZmU0ODUucG5n.jpg",
+          "https://imgproxy.leaflets.schwarz/drrFlCj5GRZbWGzyV5UkLgUYeGp9KbPiZEawsZ-V0EQ/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMDFfYmZlOTZhM2IwYWY0NDc0OTA0ODgyYzY2MzUxNWViOTgucG5n.jpg",
+          "https://imgproxy.leaflets.schwarz/e1pEnWidRsQjhAsauf9huBIa-hxD65VbV6TjTzuSn9o/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMDNfNTZmNzYxZjVjZjE0ODg1NTcwM2MzYzYyMWM0NDk0OTAucG5n.jpg"
+        ]
+      },
+      {
+        "store": "Kaufland",
+        "title": "Kaufland брошура",
+        "thumbnail": "https://imgproxy.leaflets.schwarz/wvkFwuf-qQLr9OFsA0N9WHT1a-xm7gfCFKZZ3D0D6HQ/rs:fit:150:0:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtYzU5NC03NzY3LWFiYWYtOTk3ZTlmZDFmMjU2L3BhZ2UtMDFfYjZiNDg2NTJjMjM5MTdhMDhjOTI4ZmI3ZWQyZWYwYTUucG5n.jpg",
+        "url": "https://leaflets.kaufland.com/bg-BG/BG_bg_leaflet5_3100_BG19-OC1/ar/3100",
+        "validFrom": "04.05.2026",
+        "validTo": "17.05.2026",
+        "pages": [
+          "https://imgproxy.leaflets.schwarz/641D9zUn8hB94LsHAy6Ub4rrCZDAV5edccqK7_ZRihw/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtYzU5NC03NzY3LWFiYWYtOTk3ZTlmZDFmMjU2L3BhZ2UtMDFfYjZiNDg2NTJjMjM5MTdhMDhjOTI4ZmI3ZWQyZWYwYTUucG5n.jpg",
+          "https://imgproxy.leaflets.schwarz/QQ3r6k5_8mwDipA4r6ZIz0X5DimMdpLYLszggroQW3E/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtYzU5NC03NzY3LWFiYWYtOTk3ZTlmZDFmMjU2L3BhZ2UtMDNfYzJkYjMwY2UwNDZiNTg4NGI0YzlhNjI3OTA2ZGUwNzAucG5n.jpg",
+          "https://imgproxy.leaflets.schwarz/RQ1aW3rV-lkvmZA6739eYPEOBwpe0ZEU0VKvzFJVjPE/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtYzU5NC03NzY3LWFiYWYtOTk3ZTlmZDFmMjU2L3BhZ2UtMDJfY2MyYzI0ZDZhNTJmZWM4MDdjNjBhZWVjM2JlM2YxODMucG5n.jpg"
+        ]
+      },
+      {
+        "store": "Kaufland",
+        "title": "Kaufland брошура",
+        "thumbnail": "https://imgproxy.leaflets.schwarz/NSSvxfl4I8wIoEmO4SJLa12z4ECeobpfjRbKUP8IIeQ/rs:fit:150:0:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMDFfMDIxZTUxNTNiZjZmOWVmMTdiODJkN2IwN2Q0MzZlZmUucG5n.jpg",
+        "url": "https://leaflets.kaufland.com/bg-BG/BG_bg_Hyper1_3100_BG19-CL1/ar/3100",
+        "validFrom": "04.05.2026",
+        "validTo": "10.05.2026",
+        "pages": [
+          "https://imgproxy.leaflets.schwarz/0wE8SRw0Sa6uD15dsDx95LrGYz0wuVDd4VlwagltLrk/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMDNfOWExYzViZjhhNmE4ZWE0OWM3MDk4ZTY5YjMyZjUxNmYucG5n.jpg",
+          "https://imgproxy.leaflets.schwarz/2cGqzJku-vUGrxwItH6v4BSikurqQ_xpPy41TzT0mwk/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMDFfMDIxZTUxNTNiZjZmOWVmMTdiODJkN2IwN2Q0MzZlZmUucG5n.jpg",
+          "https://imgproxy.leaflets.schwarz/u_gxPNDKh3vBYk26WAeGXRNJdRsO8Sm93NccEXiHTAA/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMDJfYzNjNDBlN2E3MTYxNmRhNjdjODM4MzRiZWFiNjY3NjYucG5n.jpg"
+        ]
+      }
+    ],
     "lidl": []
   }
 }
