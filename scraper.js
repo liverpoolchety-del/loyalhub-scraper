@@ -51,7 +51,7 @@ function downloadFile(url, destPath) {
 // ---------------------------------------------------------------------------
 function convertPdfToImages(pdfPath, outputDir) {
   ensureDir(outputDir);
-  const result = spawnSync("pdftoppm", [
+  const result = spawnSync("/usr/bin/pdftoppm", [
     "-jpeg",
     "-r", "150",    // 150 DPI — good quality, reasonable file size
     "-jpegopt", "quality=85",
