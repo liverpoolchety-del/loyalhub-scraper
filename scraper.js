@@ -38,14 +38,13 @@ async function getAllBrochurePages(context, brochureUrl, storeName) {
       return [];
     }
     
-    const json = await response.json();
+  const json = await response.json();
+    const jsonStr = JSON.stringify(json);
     log(`  API response received, parsing pages...`);
-     // DEBUG: log the first 2000 chars of the API response
     log(`  API RAW: ${jsonStr.substring(0, 2000)}`);
     
     // Extract all page image URLs from the API response
     const pageImages = [];
-    const jsonStr = JSON.stringify(json);
     
     // Find all imgproxy URLs
     const matches = jsonStr.match(/https:\\\/\\\/imgproxy\.leaflets\.schwarz\\\/[^"]+/g) || [];
