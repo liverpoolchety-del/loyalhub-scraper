@@ -78,24 +78,7 @@ async function getAllBrochurePages(context, brochureUrl, storeName) {
     const totalClicks = totalPages + 5; // a few extra clicks to catch last pages
     for (let p = 0; p < totalClicks; p++) {
       // Try clicking next button first, fall back to ArrowRight
-      const clicked = await page.evaluate(() => {
-        const selectors = [
-          '[aria-label*="next" i]',
-          '[aria-label*="Next" i]',
-          '[class*="next-page"]',
-          '[class*="nextPage"]',
-          '[class*="arrow-right"]',
-          '[class*="btn-next"]',
-          'button[class*="right"]',
-        ];
-        for (const sel of selectors) {
-          const btn = document.querySelector(sel);
-          if (btn) { btn.click(); return true; }
-        }
-        return false;
-      });
-
-      if (!clicked) await page.keyboard.press("ArrowRight");
+     await page.keyboard.press("ArrowRight");
       await page.waitForTimeout(1200);
 
       // Extra pause every 10 pages
