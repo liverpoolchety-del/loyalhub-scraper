@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-05-10T09:25:51.107Z",
+  "updatedAt": "2026-05-10T09:38:53.150Z",
   "date": "2026-05-10",
   "stores": {
     "kaufland": [
       {
         "store": "Kaufland",
-        "title": "Kaufland: Актуална брошура",
+        "title": "Kaufland брошура",
         "thumbnail": "https://imgproxy.leaflets.schwarz/ogWfa5bRSl344D9_jt_-f5KFh_m6J5Z_41a-jZJv3pU/rs:fit:150:0:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMDFfYmZlOTZhM2IwYWY0NDc0OTA0ODgyYzY2MzUxNWViOTgucG5n.jpg",
         "url": "https://leaflets.kaufland.com/bg-BG/BG_bg_KDZ_3100_BG19-LFT/ar/3100",
         "validFrom": "04.05.2026",
@@ -61,7 +61,7 @@
     "lidl": [
       {
         "store": "Lidl",
-        "title": "Lidl брошура",
+        "title": "Lidl брошура брошура",
         "thumbnail": "",
         "url": "https://www.lidl.bg/c/broshura/s10020060",
         "validFrom": "",
