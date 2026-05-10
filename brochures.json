@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-10T08:12:05.211Z",
+  "updatedAt": "2026-05-10T09:14:11.325Z",
   "date": "2026-05-10",
   "stores": {
     "kaufland": [
@@ -10,67 +10,7 @@
         "url": "https://leaflets.kaufland.com/bg-BG/BG_bg_KDZ_3100_BG19-LFT/ar/3100",
         "validFrom": "04.05.2026",
         "validTo": "10.05.2026",
-        "pages": [
-          "https://imgproxy.leaflets.schwarz/drrFlCj5GRZbWGzyV5UkLgUYeGp9KbPiZEawsZ-V0EQ/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMDFfYmZlOTZhM2IwYWY0NDc0OTA0ODgyYzY2MzUxNWViOTgucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/XLh-p4-aqRolLRMbxeocPw3AIRVHjWEVRHhkKFn989s/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMDJfOTQyNWE1Njk2MmYyZmU3OWY3ZWM2NDg0ZTEzZmU0ODUucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/e1pEnWidRsQjhAsauf9huBIa-hxD65VbV6TjTzuSn9o/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMDNfNTZmNzYxZjVjZjE0ODg1NTcwM2MzYzYyMWM0NDk0OTAucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/O7opFP2ZVeNYePD9hZEdyydOj6ccwgCWqEcMiWng1G0/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMDRfZjM1ZWUzOTQ2MGRmMzgxMGNmNWEzMzI0YTAyOTJlN2QucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/yJeycQrfG8hkODEqZpareFKEs_mHrmZ2RkoMV4-m6lE/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMDVfZGRmNWY1ZGU1NDBkNjAwNDk2ZGU4Y2I2NjQ1ZWUxYzAucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/fvuPZPo4TR-IDdNQGZhIEYmyLuv_QZfeXOZrqll6cn4/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMDZfYjNkZDg2NmUwNjJjOTVjMDRlMjczOTVjYjNiMTY1OGIucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/LQE-XEt_alpreZO_tVnrLIjzuNINWMR_QUulQrjMJH4/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMDdfYzVmNmRlNTFhNmVlMWJhZjlkODJhYzI3YzRlMjE3MTgucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/DL-QrkLLJ9NH4dKLC4_9UjdMAKMa5esWLlNnrMPUVWo/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMDhfMGU5Mjk3NjljNzFjODlhZjZiMjRjYWRiNjE5MzA5YmUucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/LQZcS3JoONp-FKIKY4efO8Whb_973bwXqLOPKa4VfAQ/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMDlfNmI2ZDZhODFjMTRiMmFmODI4N2I3YzQ2ZWNiZmVhNjAucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/erSHNUYO3ebSQIbjybQas5nSMV45fMoWLce_KW1gT-Q/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMTBfZTEyYjJkNjdmODAxYzE5M2Y4YzQxZDg2Yzk3YTM1MzUucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/goKKEF4cyUL6S5xO4cWXl9419A3awGhYqpmvqGCT7Kg/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMTFfNzFjOGY3Y2MyYzYzNmFjMmRkMmY5YTNjMTY0YjJiYmQucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/C8KC8ohlWg_QwQO8rNUH-r0z0TDMMI76VooNl_29XCw/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMTJfMzc0OTJmYWQ3ODM3ODlkNTkwMWQ5YmZlYjU4Y2QzOTgucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/nXbxvsS-nPOpeedtDdHilfaznEy_b7jIYPaYMXhuE-E/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMTNfNDNlMmM5NmE2YjMwODEzNzU0ODgxM2E2ZjMwZDMxY2QucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/_vO9Th-GY2gCijZpUt7PyPO77kWdrO9_9bkWtnRlkho/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMTRfMzEwYzg4NDg2NTRkNTM1ZWEwZmY1ZTFlMGFlMjE3MWEucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/XTyfjSXjPiNAFsZPtSeMbAvCdNLx_2XagTl_y5gZCgI/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMTVfMDcxZTYxY2M2NWRiOGU2YmVjYzNmNDNiMmUwMDA2NGQucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/RGxy6u0qhPm7gwwokEfDmFEGwDRpg6FCK5teS14DTxA/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMTZfMWZlMzc0N2Q2YmMzNzBhYzhhYWYwZWRjNjNkYzVjNjAucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/M0k7WVUrNFy2JPctJd9F57AjZjP0WhHIim0ux6kov40/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMTdfYTgzMjEyMjIzY2EwZDJhM2U1MDkyZDA5NjdmYmY4YTYucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/9QDJeVpQ7N17r6p7nhcmEZp8T3RMzHxMppyCNepGLlE/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMThfMDUzOTk5NTA5YjJlNzI0ZjM1YTc5YjJjNTE5Y2Y2MGIucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/uOdVhgw3BJ7NVDBJ5MCYYeqATgSHoFblPuPMK7bXK-4/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMTlfMWJjZmI0YWE0ZTMzYmVmMmJlMTc5ZWE2NzdhZmExZTgucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/llWgldktmW6rZW4JEUh543lrx2TnTKlW5M98RILrpXI/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMjBfYTRmYWJhM2I5Nzc2ZjM0ZWZjMWQzNzE3NTg1ZThiY2EucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/3x39D3VMiNJ_RYsZyW1579UMA2Bd36N3wVErnb-iskY/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMjFfOGNiYTlmYzI2ZDg5YzA5MWQyYzI5MDdkMzY3NzZjNDYucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/m3cPb1Oeecsrra5zAZE1gs3hyiFa1bjKSjsLx3WkAFo/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMjJfYzJlMzgzYTZhYWJjNmIyMjlkNjhkNzFmNzk2ZTAxOGMucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/6xerOI-KF0nAhnO3CjKr_LaFiZ0lpTF7ou2767_pEzM/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMjNfYmRjYzZjNDVhMjcyMDhlMWE2Y2M3MmQzZTVlZWY0YWQucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/79J56G_WYtxJC8qMugPRpIqUQsHQwFlP8IuZWjoKs6U/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMjRfMTcyNzkyNzI2YjkzMmNlZjVkMjVjYzBlZDMyZjA1YmYucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/pjGuUGqpp-sbVvs-bO5TgqCYG76MvcrGXb5xKu5gx2I/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMjVfMGM0NWQ0ODFjMTJlZjdkYjk1YTk4YzhjZDljZGU4ZjIucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/Nmp3Q6-hlImsRlfGmtYcC4qBQMQB0uEyBMC0SrmSKjY/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMjZfYTgyZjAwYTEyMDhkMDY1MDBiMGZlNzkzN2FkNmUzZTUucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/JphYt8itKoPiy5dKYbEdcWbsMBv3VkON1zM08_-ejy4/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMjdfODkxYTk2ZmU2NjlmOTg5MzBlNTZkZTRlOTIxNGRiODMucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/GYNtcwccuAe-II9-0J4o_KyQ9EUUGHVaXN05LrccY1w/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMjhfNjA0ZDhmMzkyZGI2YjhmNWFiYzc0Y2NkMDk0MzVhN2MucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/FO6dL_QZZishiSiigADRCGjykcA1UjXQn0mHS2ohIxE/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMjlfNTJhMTUwMDNkMTdiNzk4NjE4ZGZjMmY0OGIyZDMzMDEucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/xnyfZwyAGnSRtn0b0j-RO0J6lTQzreMDFYh8UQUoF-k/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMzBfYmUwMmQxYzU3YmYxNDgwOTA2NzQ2NTQ1MDk0ZTZhM2IucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/OKFS-dAVtuZqXoo8qEFIr6V-ahFKHKzqutmYmqHQA9k/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMzFfZWI4MDlkOGMzMDk5NjNlOWY4ODI1ZDdhY2MzOWU5OWIucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/t-GrlRj7s_3HsrBOiI9PEfDltXMm7wnM0Z-7NFplU88/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMzJfMzBiNmI2Y2JkZjFmYzQ3NDBhMDZlN2Q5ZjllMDZmYjkucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/2Z2uSSJPxKuQ4um7bKM7jf_g5c1fRPfPnCsohhl7VQs/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMzNfMmY5OGI5Y2JlNzM2MmJmNTIzZmY3ZGIyN2FjMzg2Y2IucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/B8yGB5XTLZGDmyPryrOzsEUIAcN8br7wDyPdAh3pA5I/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMzRfNjcwMWJhYjcyM2U2YjViZWFkNWRlYTg4NDdmODYxYWIucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/WXsD5zU777YFvp84REb94w4__y3DsVz_NZapC-xdd1Q/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMzVfOWIwYTc5OTllZjdlZGE1NjRiNTU3ZGM4NjQ4MTY0MjYucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/SwU4yZHRRPD_xB3fws3dnx4IARciwvcPy6LleX8IWKw/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMzZfMDhhOTA2YzBjYTQ3ZjFkNGYyYzc4MDg5MjdhYzllYzMucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/RvXj7YooSXeenVnYN2lW5KSTtrJjSIHolzn5jLU2o0M/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMzdfMjhmMDIzYTZhYTJjNDU4YWMwNmM1ZGIxM2Y0MzNiNGQucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/VYAoDXWSD5NJh7iTObm7iUB1pK6Nsrtzh_DwPSFuDNY/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMzhfOTBkNTg1YjMxNDZkOTk2MzcxZDM0ODVjNzA0OWQ1NGMucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/EpeIUAwOABhW3cJpAAysrXNipI747dlHUHm8XpCGCTA/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtMzlfZjIyYjg1ODY3MTIzNTZmODBiNzA4OGQ5Y2QxZmVmYzcucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/W_OHSgLNZKRewA19AG8VMsyI3QqJ1X9A8LvbIvD-2uw/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNDBfOGY3YTdjMzY5ODkwNjk5ZTI5MDI4ZDEyYzNhZTg2NmYucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/c6SkTGAmGt9WVCk-5WeJzP13_I5SzSxDIvr_SvbNiXg/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNDFfNWRhMTI3ODQwODJlMjZmZjNkOGQwNzBlOGExZWNlOGMucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/5I78cOQ_jmH-eVGYw9ZC5jFuCzF0TygDJqAjvivfmM8/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNDJfZWExZDBiNDE4MThjZDUwNWE3MDRiYTY3NTI4YmQ3YzgucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/yigEJexjZqzTk7yYvFtCzlhvCzvTOmKTV8dyIq5FU3Y/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNDNfZjRiMDA1ZTY3MGNkMGNlYTRmNWM3YzU4OThiNzY4NWYucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/pO5dB4g75W8lwCP4rK1K6dxTerLzdb2haymFtswKNCA/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNDRfNTBmYjBmMTA5YmMwNDllMmY2ODNhZjU2ZmU3Y2Y0ZGEucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/OuERw4D7TnM0vFZrGOVT0xCqeV0igsl03xJvA7OWeDI/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNDVfNTY5ZDEyNzc3MWIwMDQzY2U3MmQwYTVlYzY4ZDkzNDEucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/foh1shAmb-3ruZSNdDWyVlBEnsfwqOMuBG7a5SOrxBY/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNDZfMWM3OTJhZTViYTRjZWQxNWYyZWFlMWM3YjIwNjQ2YTQucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/EqjR7Lg-hK50ZELjykQqspFXmbT_rgZOC2E0VgNcauY/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNDdfYTJiNjA3M2YzOGE1ZDcwY2M0ODgxMWU4M2JiNmNhNGIucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/fXnCznV7CMpTqlbNQl3D6saUf2dOKADyXzaG87ssB6s/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNDhfNWUzYWM5ZjhhNzMxODAwOGVlYzc5NjA1MzlkODE5ZWUucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/EuqS-WAebAjazUW64mloxf47wzYG1bW2aLjHU2-T4yk/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNDlfMDMzZmRiOWRkNGFiYzUzZWYxZWYxZTUzNzY3N2NmMzcucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/pMoBF4B5uZwDmGm0udSWjrW0Qv4wMKV_WgTcDOcNGq4/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNTBfYmI3OTY0N2YwZWM4NTE4MGVmYzA4MTE3MzY2NDcwZTYucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/Lv-4g5j-LhJrPjKFh0qqULJHGb6q0NtcAI-uhalA3ao/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNTFfNThkM2ViMTBlODRmZGFhNjk4ZmJmZmMxYjEyZjIzNzEucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/tA-J-B8UQwElncCulmLEhn798eh8Mbo6v2Ju0N2BZ6Y/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNTJfNTZmOTBkOTM0MDJlMTRmZTNmYjI1Yjg3MWNlNDUzMzYucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/_l9GIz4XxrmGeS8Njv56Cld-H7TEeRKpZ0Yccef4OhY/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNTNfYzRkNGNhZDYwNTkzMWIwZTkxZTBlM2YwZjhkZDZiNTkucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/-D2R9J7r_xIoWgROCmd-B4zEYOD0HV7O_f0OKRDzQ0E/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNTRfNWZmMTBhZWMxZjI4ODQ4ZjhhY2U2YjY5ZTAwMTBmODAucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/EQ32ujnP8JHsTUNp96w16I3YZgHtsfD06IJ1FIoQZ9M/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNTVfNGMyM2Q4ZDFlYzNjMTBkZDQ1ZTg2ZDYzYjExYTY4MDAucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/yU9STz9m-N8sprMvfmrwg8qwG1KDHok2mSP6245WV6M/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNTZfNGJlMzQ0ZTUwNmNlZmVlZDNlMGUyNjFiYjUwODgxNjEucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/N5tkK5a6a5lI7_FWRv4Ku4P1LvTJkgVtwq0ZxnAqXOY/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNTdfZDUxZmFjNjI5YWQwMTAzMjE5MjExZDBjNmRjYTBlYWMucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/zVE4XSw6CrL_ydpaN5PGB-Rh9g_aW9mOggNJNgGKnnU/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNThfZTJmZGFmNTllMWU5ZGMwNjM2YjYwZGY1ZDAzOTI4MTQucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/Tkg996mbS7nxxu6yIVTTVKf5VqQaph1Qubo9mx5-Hdw/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtODMzNC03MzJjLTljMjQtZjI0ZTg3ZDEyOWQ3L3BhZ2UtNTlfZjI2MzVmZGY4MTgyMjUyMzUyZjk1NjNhZDBmMmNlODQucG5n.jpg"
-        ]
+        "pages": []
       },
       {
         "store": "Kaufland",
@@ -79,22 +19,7 @@
         "url": "https://leaflets.kaufland.com/bg-BG/BG_bg_leaflet5_3100_BG19-OC1/ar/3100",
         "validFrom": "04.05.2026",
         "validTo": "17.05.2026",
-        "pages": [
-          "https://imgproxy.leaflets.schwarz/641D9zUn8hB94LsHAy6Ub4rrCZDAV5edccqK7_ZRihw/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtYzU5NC03NzY3LWFiYWYtOTk3ZTlmZDFmMjU2L3BhZ2UtMDFfYjZiNDg2NTJjMjM5MTdhMDhjOTI4ZmI3ZWQyZWYwYTUucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/RQ1aW3rV-lkvmZA6739eYPEOBwpe0ZEU0VKvzFJVjPE/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtYzU5NC03NzY3LWFiYWYtOTk3ZTlmZDFmMjU2L3BhZ2UtMDJfY2MyYzI0ZDZhNTJmZWM4MDdjNjBhZWVjM2JlM2YxODMucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/QQ3r6k5_8mwDipA4r6ZIz0X5DimMdpLYLszggroQW3E/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtYzU5NC03NzY3LWFiYWYtOTk3ZTlmZDFmMjU2L3BhZ2UtMDNfYzJkYjMwY2UwNDZiNTg4NGI0YzlhNjI3OTA2ZGUwNzAucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/0OYkvmJ-Wp6bF16JWmzBmlUIP50MzS9FvbXAiY2-f8M/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtYzU5NC03NzY3LWFiYWYtOTk3ZTlmZDFmMjU2L3BhZ2UtMDRfMTYxNDQzNzA4NGQ3NGU0OGEwNDQ0ZDI4MjA3ODE3NmEucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/uTEz1gyLrzBpZFKjpeTTpXzLYLztucE4h0s7O-T_SUM/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtYzU5NC03NzY3LWFiYWYtOTk3ZTlmZDFmMjU2L3BhZ2UtMDVfODBmNzg3ZDgyYjFlYmExZGU0N2JjNDNhNTQxZjcwMmYucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/nywLG3AsipwdvzDQ1U5dY-QAwgAl97lP-CP-YNp2rkk/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtYzU5NC03NzY3LWFiYWYtOTk3ZTlmZDFmMjU2L3BhZ2UtMDZfZjBmYzUxNzk5ODM4YzNhNWY0MzJiMmNiNzUyNjg0ZjcucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/-6MG_bAQlbeTlrXhDvv7-MSXchONgm_AHyYfNc5JrH4/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtYzU5NC03NzY3LWFiYWYtOTk3ZTlmZDFmMjU2L3BhZ2UtMDdfMzhkY2IzZjZjMDhjZWUzNDU0NGYwZmJmNWYzZjE3NmMucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/rXSLGOWLc_b4SkzP_ErjH3pvFse8GCbqwEq9-bxhq5E/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtYzU5NC03NzY3LWFiYWYtOTk3ZTlmZDFmMjU2L3BhZ2UtMDhfNjI5ODRhZGU3Y2I5YTUwZjNmYjQ0NzZmMjdjOGJkMzcucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/7H5e5MKt2TaxIqwkDaBJaLZnji1aMT3THuG60IDuAKY/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtYzU5NC03NzY3LWFiYWYtOTk3ZTlmZDFmMjU2L3BhZ2UtMDlfOTUyODdiMWZhMjE5OGJkZmQ2MmZmZDExYjNjM2VmOTAucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/MGhOtuXmHHSBz-afbUGl0XdvHXdKlbSKiwYvZRW5tBM/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtYzU5NC03NzY3LWFiYWYtOTk3ZTlmZDFmMjU2L3BhZ2UtMTBfYzAwNDZiOGI2OTU4ODAzODY5ZjBkZTFkYzViZDEwNTUucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/yDtzZDD_Sy7C-vVLioLQuHnDLmVd0XBdgZo7fTUSbe8/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtYzU5NC03NzY3LWFiYWYtOTk3ZTlmZDFmMjU2L3BhZ2UtMTFfYmJjZThjNWNmODRkOTg3ZjNlOTI2ZjA5ZjE3NGFlOWIucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/QgNoNWjbXMeJE2Y3mn4j_rKXlnewVGqdRV6frFjMF0U/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtYzU5NC03NzY3LWFiYWYtOTk3ZTlmZDFmMjU2L3BhZ2UtMTJfNzdiMDMzMDhlZjcyYmI5NzhlNmM1ZDgyZTZkODNkNjgucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/J1yavAI_L9iz0Qr5wQ39SQmvFkxA-p1Cu2D1bDmt-YA/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtYzU5NC03NzY3LWFiYWYtOTk3ZTlmZDFmMjU2L3BhZ2UtMTNfZWMwNGE2YTkxMzI4ODIzODg0ZWEwYTRmYTNlZGE2YTkucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/xGx0mNGbphwsNKA6p7RgbQYsU0ZFXasr0SHWEOS_zb4/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNmYtYzU5NC03NzY3LWFiYWYtOTk3ZTlmZDFmMjU2L3BhZ2UtMTRfOWFkZWRjNjg5NTZiMDdjZmIxNTQ2NzJiZGYyNDdkZWUucG5n.jpg"
-        ]
+        "pages": []
       },
       {
         "store": "Kaufland",
@@ -103,26 +28,7 @@
         "url": "https://leaflets.kaufland.com/bg-BG/BG_bg_Hyper1_3100_BG19-CL1/ar/3100",
         "validFrom": "04.05.2026",
         "validTo": "10.05.2026",
-        "pages": [
-          "https://imgproxy.leaflets.schwarz/2cGqzJku-vUGrxwItH6v4BSikurqQ_xpPy41TzT0mwk/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMDFfMDIxZTUxNTNiZjZmOWVmMTdiODJkN2IwN2Q0MzZlZmUucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/u_gxPNDKh3vBYk26WAeGXRNJdRsO8Sm93NccEXiHTAA/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMDJfYzNjNDBlN2E3MTYxNmRhNjdjODM4MzRiZWFiNjY3NjYucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/0wE8SRw0Sa6uD15dsDx95LrGYz0wuVDd4VlwagltLrk/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMDNfOWExYzViZjhhNmE4ZWE0OWM3MDk4ZTY5YjMyZjUxNmYucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/iiQOnFFrf8_QUGi0ux2sCZB-kmjCQYK6WJedtZFK0uU/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMDRfNGNhYWIwMzkwNzNjYmE4ZTBhNDk3OTI4OThhYjU3ZmQucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/IUzG_Vz5HI9B-1FtekU5JElgmKK2j3r1CYPygglmsh8/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMDVfZDBjYTE5YWE3ZGYwN2NkZTM1OWU4ZGE4OTdjMjZhZmEucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/KHfWYMANArDrdA_aTnLC_9hTdVUPgRjbKvVWPOwd-T8/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMDZfYjQzYzk2YTE5Y2E4NmQ1NDRiZWQwZjEwMDkzOWJiZjYucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/BdOOPuc-3xoHscT19LSBNaV8eb-76DHbqWqCPeI8AEA/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMDdfNzIxZWFhNmY4OWEwZDJjMzQyZDEwYzk3MzkxNzYyYjkucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/wRoNSgHxAOCtZi6UISZsM1Mvqc7pEw1Pas-2mOxLpk0/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMDhfZWJhZWI5ZmQwMmEwNTVkY2NhOWZhMTk4MDYxNTllMjMucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/bN3LaMPqVLM7z3Q25bi7kOvLUTHKiTZvfwNBtFcYphE/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMDlfNTc3NTFlODhhOWI5Yjg5YjkzNGE2OWQ0NWMxZDczNmQucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/OeVwypATfd3lFRYdpxl0RmR5FEPx2bpYdZGp7G9mDoU/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMTBfNWIyYzUxMDExZWRlOWJjZjhiNzlkZDZjZGUzYzlmZmEucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/yuXXFkOr4ckzZ4gA6b-AEVR06x9k2vGeA89DnL3pPr8/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMTFfMTcyYWE3Mzk4YmJiNzkzNjA1YWY4OTE4YThhNDk5YWUucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/04mzXFW_FG1fF4TsF8t10WVqvvl74pZAmzIjN46dDHY/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMTJfZDk3YWM1MDk5YTc4NWRlOWQwYWRiOWUyZGFmM2RkMTYucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/jv6gcPKMcsmbcQVRu3TG3w2ZqQGUpkVLlCT4EflsP0k/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMTNfYjg0NDRlZjYzMWI5OGZjZmI0MTc0NDc1OWVlNTNhZjgucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/cWiNm5k3xA1DZCTZpsMb4rj4VEjLfb1-GVO40puuhVo/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMTRfM2E3ZWM5ZTY1NzA1MDQ4NmZjMThhOTVkYjk4OGJmYjkucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/VFKgzCNx8v2HZSdTd7Nm3qzup492g6El2Jj5ErHGTJI/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMTVfNzFlMDA4ZWJjYTVjYzY0NGY5OTg0YTIwNmIyYzQ4M2QucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/c0gM5jmn_QgxrRYIlE2naUpkaF05BIc4mkxmiyQ-6I0/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMTZfM2JkMTQ4Y2RlMjgxZDJhZTdjOTM2ZDljNzhmMjY0YTIucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/Z0Q2fCHmnC1Wlmdl8SaSBgE8lgciO8IB0R5RDI-_3t0/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMTdfMGIyOTA2MjRmYzNlNWZiYWRmYWIzYzFmYjM3MWEwMmEucG5n.jpg",
-          "https://imgproxy.leaflets.schwarz/bxDBygiUOP9gC_Z0jL9cjrTGCQRc2IHo0AG2wNTUkh4/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGFiNTAtZmQxOC03ZDk1LTljOGQtNzY1NDkwZjdhNTM1L3BhZ2UtMThfMzhjZjEwMDY3ODhjMGZlYTVlNTE3MzEyMmFiZDBiMGYucG5n.jpg"
-        ]
+        "pages": []
       },
       {
         "store": "Kaufland",
@@ -131,10 +37,7 @@
         "url": "https://leaflets.kaufland.com/bg-BG/BG_bg_leaflet1_3100_BG19-FL1/ar/3100",
         "validFrom": "04.05.2026",
         "validTo": "10.05.2026",
-        "pages": [
-          "https://imgproxy.leaflets.schwarz/vMpeXCotEszgTrVHxFWR_4Ome1dHwdx9FZbumIqfgS8/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGRmM2UtNzJhMi03MzA3LTg5ZDQtMmZkY2IzOWQ1MmJkL3BhZ2UtMV9hN2EyY2VkMzg3NmQ2ZTBkMGFjNGFiNzdjN2JkMDYxYS5wbmc.jpg",
-          "https://imgproxy.leaflets.schwarz/d7M_1JZB-LGbTqvWBDd7wiPX0yk9kP5Ml6A4mkti5no/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGRmM2UtNzJhMi03MzA3LTg5ZDQtMmZkY2IzOWQ1MmJkL3BhZ2UtMl82MDFhZDU4ZDNmNjUxNTY2ZmZlZjliNDkzNGZmM2U4Yy5wbmc.jpg"
-        ]
+        "pages": []
       },
       {
         "store": "Kaufland",
@@ -143,13 +46,7 @@
         "url": "https://leaflets.kaufland.com/bg-BG/BG_bg_leaflet2_3100_BG19-FL2/ar/3100",
         "validFrom": "04.05.2026",
         "validTo": "10.05.2026",
-        "pages": [
-          "https://imgproxy.leaflets.schwarz/lTZkOGLd3h1DxyGqmiz1UJJr6Jc-CIrMu8m6cF_v8T4/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGYzMWItM2EzZC03NTMxLThjOTQtZTAyMzg0N2YwNzc4L3BhZ2UtMV82YjY4OTVmY2VlNTdkNTI3ZGY2YmU4YmNlYzU1NTQ4Mi5wbmc.jpg",
-          "https://imgproxy.leaflets.schwarz/yKKZQ0lCw72Ms0dXe8Kwku79PdyZOSZd9cK4hVfuV8c/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGYzMWItM2EzZC03NTMxLThjOTQtZTAyMzg0N2YwNzc4L3BhZ2UtMl81MTQ1YjQzNTM5OWExNzJmYjNhZjQ0MjhmNTI1YzFhOC5wbmc.jpg",
-          "https://imgproxy.leaflets.schwarz/INFVO7fXfdVF-xBOZgW4bw2oAScBhQSKwJn2fgJIBJc/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGYzMWItM2EzZC03NTMxLThjOTQtZTAyMzg0N2YwNzc4L3BhZ2UtM182NDI1YWFmNGI2MmRjMjkzMGQyMjBiN2U0YWMxNTZmNC5wbmc.jpg",
-          "https://imgproxy.leaflets.schwarz/-KMSyzx0PRsBOd2wLr4B2774uJDAsYaMN7CfU3WogkE/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGYzMWItM2EzZC03NTMxLThjOTQtZTAyMzg0N2YwNzc4L3BhZ2UtNF9lNmNjN2EwYjNlNjFhMDM5ODAwZjdiZTZlZjMxZWFjMS5wbmc.jpg",
-          "https://imgproxy.leaflets.schwarz/hwWzHi76vnMezfswD9nNEp0EeotvwGUk3qRqy5ifcSw/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGYzMWItM2EzZC03NTMxLThjOTQtZTAyMzg0N2YwNzc4L3BhZ2UtNV85NTFiN2QyNmZmNTdiOGU4MTVkZTI4Mzc2OTIxZjNjNy5wbmc.jpg"
-        ]
+        "pages": []
       },
       {
         "store": "Kaufland",
@@ -158,11 +55,7 @@
         "url": "https://leaflets.kaufland.com/bg-BG/BG_bg_leaflet4_3100_BG19-FL4/ar/3100",
         "validFrom": "04.05.2026",
         "validTo": "10.05.2026",
-        "pages": [
-          "https://imgproxy.leaflets.schwarz/rZ86Ay9qGwd_R2L0pzTptwk4Ml0w8BijovGgOI3dfu0/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGRkYTUtOWNjZC03MWZiLTk3NzktMDhiNTk5OWIyNWZhL3BhZ2UtMV84MzQ5ZWU0ZmY0NDI5NjJjMTRjNjg5NmE4ZjY2YTg3ZC5wbmc.jpg",
-          "https://imgproxy.leaflets.schwarz/eTJM-BINh59t5veKMs6FeXGpmqRQfgOmIyhN9mrFobs/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGRkYTUtOWNjZC03MWZiLTk3NzktMDhiNTk5OWIyNWZhL3BhZ2UtMl9lMWM0MTQ4NDhhZGM3MmI3ZDA2ODc4NmRiOTFhMmM1YS5wbmc.jpg",
-          "https://imgproxy.leaflets.schwarz/5xOPk-GbgQNbr7qUCLnYKiTUj2F8-fs8zC5XWG0BgJY/rs:fit:1200:1200:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZGRkYTUtOWNjZC03MWZiLTk3NzktMDhiNTk5OWIyNWZhL3BhZ2UtM18yZDBmN2IwZTc5MDEwMjhmNjE1MjRmNzY2MGI0MDQxZi5wbmc.jpg"
-        ]
+        "pages": []
       }
     ],
     "lidl": [
