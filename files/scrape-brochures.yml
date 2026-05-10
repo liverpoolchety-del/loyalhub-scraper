@@ -24,11 +24,13 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Install poppler-utils
+- name: Install poppler-utils
         run: |
           sudo apt-get install -y poppler-utils
-          which pdftoppm
-          pdftoppm -v
+          echo "pdftoppm location:"
+          which pdftoppm || echo "NOT FOUND in PATH"
+          ls -la /usr/bin/pdftoppm || echo "NOT at /usr/bin/pdftoppm"
+          ls -la /usr/local/bin/pdftoppm || echo "NOT at /usr/local/bin"
 
       - name: Install dependencies
         run: npm install
