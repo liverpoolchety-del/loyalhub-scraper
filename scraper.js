@@ -96,12 +96,16 @@ async function getAllBrochurePages(context, brochureUrl, storeName) {
 
     log(`  Detected ${totalPages} total pages, clicking through...`);
 
-    for (let p = 0; p < Math.min(totalPages, 50); p++) {
+const clicks = Math.max(totalPages, 80);
+    for (let p = 0; p < clicks; p++) {
       await page.keyboard.press("ArrowRight");
-      await page.waitForTimeout(800);
+      await page.waitForTimeout(2000);
+      // Every 10 pages, pause longer to let slow images catch up
+      if (p % 10 === 0) await page.waitForTimeout(1000);
     }
 
-    await page.waitForTimeout(3000);
+    // Final wait to capture any remaining lazy-loaded images
+    await page.waitForTimeout(5000);
 
 // Deduplicate and sort by page number extracted from URL
     const unique = [...new Set(pageImages)];
