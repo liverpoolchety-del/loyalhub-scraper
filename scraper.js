@@ -15,12 +15,18 @@ function sortPagesByNumber(urls) {
   return [...new Set(urls)].sort((a, b) => {
     const getNum = (url) => {
       try {
-        const b64 = url.split("/g:no/")[1]?.replace(/\.[a-z]+$/, "") || "";
-        const padding = 4 - (b64.length % 4);
-        const decoded = Buffer.from(b64 + "=".repeat(padding % 4), "base64url").toString("utf8");
-        const match = decoded.match(/page-?0*(\d+)/i);
-        return match ? parseInt(match[1]) : 999;
-      } catch { return 999; }
+        // Extract the base64 part after /g:no/
+        const b64Part = url.split("/g:no/")[1]?.replace(/\.[^.]+$/, "") || "";
+        // Try URL-safe base64 decode
+        const padded = b64Part + "=".repeat((4 - b64Part.length % 4) % 4);
+        const decoded = Buffer.from(padded, "base64").toString("utf8");
+        // Match page-01, page-02, page-1, page-2 etc
+        const match = decoded.match(/page[-_]?0*(\d+)/i);
+        if (match) return parseInt(match[1], 10);
+        return 999;
+      } catch {
+        return 999;
+      }
     };
     return getNum(a) - getNum(b);
   });
