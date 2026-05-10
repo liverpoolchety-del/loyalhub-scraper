@@ -103,8 +103,21 @@ async function getAllBrochurePages(context, brochureUrl, storeName) {
 
     await page.waitForTimeout(3000);
 
-    // Deduplicate and sort
-    const unique = [...new Set(pageImages)].sort();
+// Deduplicate and sort by page number extracted from URL
+    const unique = [...new Set(pageImages)];
+    unique.sort((a, b) => {
+      // Decode base64 part to get page number
+      const getPageNum = (url) => {
+        try {
+          const b64 = url.split('/g:no/')[1]?.replace('.jpg', '') || '';
+          const padding = 4 - (b64.length % 4);
+          const decoded = Buffer.from(b64 + '='.repeat(padding), 'base64').toString('utf8');
+          const match = decoded.match(/page-(\d+)/);
+          return match ? parseInt(match[1]) : 999;
+        } catch { return 999; }
+      };
+      return getPageNum(a) - getPageNum(b);
+    });
     log(`  Total pages captured: ${unique.length}`);
     return unique;
 
