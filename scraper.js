@@ -12,122 +12,70 @@ function log(msg) {
 // Intercept ALL API responses from the brochure viewer to find page image URLs
 // ---------------------------------------------------------------------------
 async function getAllBrochurePages(context, brochureUrl, storeName) {
+  // Extract flyer identifier from URL
+  // e.g. https://leaflets.kaufland.com/bg-BG/BG_bg_KDZ_3100_BG19-LFT/ar/3100
+  const match = brochureUrl.match(/\/([^\/]+)\/ar\//);
+  if (!match) return [];
+  
+  const flyerIdentifier = match[1];
+  const regionId = brochureUrl.match(/\/(\d+)$/)?.[1] || "3100";
+  const apiUrl = `https://endpoints.leaflets.schwarz/v4/flyer?flyer_identifier=${flyerIdentifier}&region_id=${regionId}&region_code=${regionId}`;
+  
+  log(`  Calling API: ${apiUrl}`);
+  
   const page = await context.newPage();
-  const pageImages = [];
-  const seen = new Set();
-  const apiResponses = [];
-
   try {
-    log(`  Opening ${storeName} brochure: ${brochureUrl}`);
-
-    // Intercept ALL responses — JSON, images, everything
-    page.on("response", async (response) => {
-      const url = response.url();
-      const contentType = response.headers()["content-type"] || "";
-
-      // Capture high-res brochure page images
-      if (
-        url.includes("imgproxy.leaflets.schwarz") &&
-        !seen.has(url)
-      ) {
-        try {
-          const buf = await response.body();
-          if (buf.length > 30000) {
-            seen.add(url);
-            // Upgrade low-res to high-res
-            const hiRes = url
-              .replace(/rs:fit:\d+:\d+:\d+/, "rs:fit:1200:1200:1")
-              .replace(/rs:fit:\d+:0:\d+/, "rs:fit:1200:1200:1");
-            pageImages.push(hiRes);
-          }
-        } catch {}
-      }
-
-      // Capture JSON API responses that might contain page data
-      if (contentType.includes("application/json") || contentType.includes("text/javascript")) {
-        try {
-          const text = await response.text();
-          if (
-            text.includes("imgproxy") ||
-            text.includes("page-0") ||
-            text.includes("leaflets/images") ||
-            (text.includes("pages") && text.length > 500)
-          ) {
-            apiResponses.push({ url, text: text.substring(0, 5000) });
-            log(`    Captured API response: ${url.substring(0, 100)}`);
-          }
-        } catch {}
+    const response = await page.request.get(apiUrl, {
+      headers: {
+        "Accept": "application/json",
+        "Referer": "https://leaflets.kaufland.com/",
+        "Origin": "https://leaflets.kaufland.com",
       }
     });
-
-    // Navigate to brochure
-    await page.goto(brochureUrl, { waitUntil: "networkidle", timeout: 45000 });
-    await page.waitForTimeout(4000);
-
-    // Log what API calls were made
-    if (apiResponses.length > 0) {
-      log(`  Found ${apiResponses.length} API responses with page data`);
-      for (const r of apiResponses) {
-        log(`    ${r.url}`);
-        // Try to parse JSON and extract image URLs
-        try {
-          const json = JSON.parse(r.text);
-          const jsonStr = JSON.stringify(json);
-          const imgMatches = jsonStr.match(/https:\/\/imgproxy\.leaflets\.schwarz\/[^"]+/g) || [];
-          for (const img of imgMatches) {
-            if (!seen.has(img)) {
-              seen.add(img);
-              const hiRes = img.replace(/rs:fit:\d+:\d+:\d+/, "rs:fit:1200:1200:1")
-                              .replace(/rs:fit:\d+:0:\d+/, "rs:fit:1200:1200:1");
-              pageImages.push(hiRes);
-            }
-          }
-        } catch {}
+    
+    if (!response.ok()) {
+      log(`  API failed: ${response.status()}`);
+      return [];
+    }
+    
+    const json = await response.json();
+    log(`  API response received, parsing pages...`);
+    
+    // Extract all page image URLs from the API response
+    const pageImages = [];
+    const jsonStr = JSON.stringify(json);
+    
+    // Find all imgproxy URLs
+    const matches = jsonStr.match(/https:\\\/\\\/imgproxy\.leaflets\.schwarz\\\/[^"]+/g) || [];
+    for (const raw of matches) {
+      const url = raw.replace(/\\\//g, '/');
+      // Only keep high-res page images
+      if (url.includes('rs:fit:1200') || url.includes('rs:fit:400')) {
+        const hiRes = url.replace(/rs:fit:\d+:\d+:\d+/, 'rs:fit:1200:1200:1');
+        pageImages.push(hiRes);
       }
     }
-
-    // Also try clicking through pages to trigger lazy loading
-    // Get page count from viewer UI
-    const totalPages = await page.evaluate(() => {
-      const text = document.body.innerText;
-      const match = text.match(/\b(\d+)\s*\/\s*(\d+)\b/);
-      return match ? parseInt(match[2]) : 20;
-    });
-
-    log(`  Detected ${totalPages} total pages, clicking through...`);
-
-const clicks = Math.max(totalPages, 80);
-    for (let p = 0; p < clicks; p++) {
-      await page.keyboard.press("ArrowRight");
-      await page.waitForTimeout(2000);
-      // Every 10 pages, pause longer to let slow images catch up
-      if (p % 10 === 0) await page.waitForTimeout(1000);
-    }
-
-    // Final wait to capture any remaining lazy-loaded images
-    await page.waitForTimeout(5000);
-
-// Deduplicate and sort by page number extracted from URL
+    
+    // Sort by page number
     const unique = [...new Set(pageImages)];
     unique.sort((a, b) => {
-      // Decode base64 part to get page number
       const getPageNum = (url) => {
         try {
           const b64 = url.split('/g:no/')[1]?.replace('.jpg', '') || '';
           const padding = 4 - (b64.length % 4);
           const decoded = Buffer.from(b64 + '='.repeat(padding), 'base64').toString('utf8');
-          const match = decoded.match(/page-(\d+)/);
+          const match = decoded.match(/page-?0*(\d+)/i);
           return match ? parseInt(match[1]) : 999;
         } catch { return 999; }
       };
       return getPageNum(a) - getPageNum(b);
     });
-    log(`  Total pages captured: ${unique.length}`);
+    
+    log(`  Got ${unique.length} pages from API`);
     return unique;
-
   } catch (err) {
-    log(`  Error: ${err.message}`);
-    return [...new Set(pageImages)].sort();
+    log(`  API error: ${err.message}`);
+    return [];
   } finally {
     await page.close();
   }
