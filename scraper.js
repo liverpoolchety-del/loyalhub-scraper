@@ -1,186 +1,120 @@
 const { chromium } = require("playwright");
 const fs = require("fs");
 const path = require("path");
-const { execSync, spawnSync } = require("child_process");
-const https = require("https");
-const http = require("http");
 
 const OUTPUT_PATH = path.join(__dirname, "brochures.json");
-const PAGES_DIR = path.join(__dirname, "pages");
 
 function log(msg) {
   console.log(`[${new Date().toISOString()}] ${msg}`);
 }
 
-function ensureDir(dir) {
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-}
-
 // ---------------------------------------------------------------------------
-// Download a file from URL to local path
+// Sort brochure page URLs by page number decoded from base64
 // ---------------------------------------------------------------------------
-function downloadFile(url, destPath) {
-  return new Promise((resolve, reject) => {
-    const proto = url.startsWith("https") ? https : http;
-    const file = fs.createWriteStream(destPath);
-    proto.get(url, {
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
-        "Referer": "https://leaflets.kaufland.com/",
-      }
-    }, (res) => {
-      if (res.statusCode === 301 || res.statusCode === 302) {
-        file.close();
-        fs.unlinkSync(destPath);
-        return downloadFile(res.headers.location, destPath).then(resolve).catch(reject);
-      }
-      if (res.statusCode !== 200) {
-        file.close();
-        return reject(new Error(`HTTP ${res.statusCode} for ${url}`));
-      }
-      res.pipe(file);
-      file.on("finish", () => file.close(() => resolve()));
-      file.on("error", reject);
-    }).on("error", reject);
+function sortPagesByNumber(urls) {
+  return [...new Set(urls)].sort((a, b) => {
+    const getNum = (url) => {
+      try {
+        const b64 = url.split("/g:no/")[1]?.replace(/\.[a-z]+$/, "") || "";
+        const padding = 4 - (b64.length % 4);
+        const decoded = Buffer.from(b64 + "=".repeat(padding % 4), "base64url").toString("utf8");
+        const match = decoded.match(/page-?0*(\d+)/i);
+        return match ? parseInt(match[1]) : 999;
+      } catch { return 999; }
+    };
+    return getNum(a) - getNum(b);
   });
 }
 
 // ---------------------------------------------------------------------------
-// Convert PDF to JPG images using pdftoppm
-// Returns array of image file paths
+// Get all pages for a brochure using network interception
 // ---------------------------------------------------------------------------
-function convertPdfToImages(pdfPath, outputDir) {
-  ensureDir(outputDir);
-  
-  // Try multiple possible paths for pdftoppm
-  const possiblePaths = [
-    "pdftoppm",
-    "/usr/bin/pdftoppm", 
-    "/usr/local/bin/pdftoppm",
-    "/opt/homebrew/bin/pdftoppm",
-  ];
-  
-  let pdftoppmPath = null;
-  for (const p of possiblePaths) {
-    const check = spawnSync("which", [p.replace("/", "").split("/").pop()]);
-    if (check.status === 0) { pdftoppmPath = p; break; }
-  }
-  
-  // Find it via shell
-  if (!pdftoppmPath) {
-    const which = spawnSync("sh", ["-c", "which pdftoppm || find / -name pdftoppm 2>/dev/null | head -1"]);
-    const found = which.stdout?.toString().trim();
-    if (found) pdftoppmPath = found;
-  }
+async function getAllBrochurePages(context, brochureUrl, storeName) {
+  const page = await context.newPage();
+  const pageImages = [];
+  const seen = new Set();
 
-  if (!pdftoppmPath) {
-    log(`  pdftoppm not found, trying convert (ImageMagick)`);
-    // Try ImageMagick as fallback
-    const result = spawnSync("convert", [
-      "-density", "150",
-      pdfPath,
-      "-quality", "85",
-      path.join(outputDir, "page-%03d.jpg"),
-    ], { timeout: 120000 });
-    
-    if (result.error) {
-      log(`  ImageMagick also failed: ${result.error.message}`);
-      return [];
-    }
-  } else {
-    log(`  Using pdftoppm at: ${pdftoppmPath}`);
-    const result = spawnSync(pdftoppmPath, [
-      "-jpeg", "-r", "150",
-      pdfPath,
-      path.join(outputDir, "page"),
-    ], { timeout: 120000 });
-    
-    if (result.error) {
-      log(`  pdftoppm error: ${result.error.message}`);
-      return [];
-    }
-  }
-
-  const files = fs.existsSync(outputDir) ? fs.readdirSync(outputDir)
-    .filter(f => f.match(/\.(jpg|jpeg|ppm)$/i))
-    .sort()
-    .map(f => path.join(outputDir, f)) : [];
-
-  log(`  Converted ${files.length} pages`);
-  return files;
-}
-// ---------------------------------------------------------------------------
-// Call the Schwarz leaflets API to get flyer info including PDF URL
-// ---------------------------------------------------------------------------
-async function getFlyerInfo(page, flyerIdentifier, regionId) {
-  const apiUrl = `https://endpoints.leaflets.schwarz/v4/flyer?flyer_identifier=${flyerIdentifier}&region_id=${regionId}`;
   try {
-    const response = await page.request.get(apiUrl, {
-      headers: {
-        "Accept": "application/json",
-        "Referer": "https://leaflets.kaufland.com/",
-        "Origin": "https://leaflets.kaufland.com",
-      }
+    log(`  Opening: ${brochureUrl}`);
+
+    // Capture ALL imgproxy image responses
+    page.on("response", async (response) => {
+      const url = response.url();
+      if (!url.includes("imgproxy.leaflets.schwarz")) return;
+      if (seen.has(url)) return;
+      try {
+        const buf = await response.body();
+        if (buf.length > 30000) {
+          seen.add(url);
+          // Upgrade to 1200px
+          const hiRes = url
+            .replace(/rs:fit:\d+:\d+:\d+/, "rs:fit:1200:1200:1")
+            .replace(/rs:fit:\d+:0:\d+/, "rs:fit:1200:1200:1")
+            .replace(/rs:fill:\d+:\d+:\d+/, "rs:fit:1200:1200:1");
+          pageImages.push(hiRes);
+        }
+      } catch {}
     });
-    if (!response.ok()) return null;
-    const json = await response.json();
-    if (!json.success || !json.flyer) return null;
-    return json.flyer;
+
+    await page.goto(brochureUrl, { waitUntil: "networkidle", timeout: 45000 });
+    await page.waitForTimeout(3000);
+
+    // Get total page count from viewer UI
+    const totalPages = await page.evaluate(() => {
+      const all = Array.from(document.querySelectorAll("*"));
+      for (const el of all) {
+        const text = el.textContent?.trim() || "";
+        if (/^\d+\s*\/\s*\d+$/.test(text)) {
+          const m = text.match(/\d+\s*\/\s*(\d+)/);
+          if (m) return parseInt(m[1]);
+        }
+      }
+      return 60; // default max
+    });
+
+    log(`  Detected ${totalPages} pages, clicking through...`);
+
+    // Click through ALL pages with adequate wait time
+    const totalClicks = totalPages + 5; // a few extra clicks to catch last pages
+    for (let p = 0; p < totalClicks; p++) {
+      // Try clicking next button first, fall back to ArrowRight
+      const clicked = await page.evaluate(() => {
+        const selectors = [
+          '[aria-label*="next" i]',
+          '[aria-label*="Next" i]',
+          '[class*="next-page"]',
+          '[class*="nextPage"]',
+          '[class*="arrow-right"]',
+          '[class*="btn-next"]',
+          'button[class*="right"]',
+        ];
+        for (const sel of selectors) {
+          const btn = document.querySelector(sel);
+          if (btn) { btn.click(); return true; }
+        }
+        return false;
+      });
+
+      if (!clicked) await page.keyboard.press("ArrowRight");
+      await page.waitForTimeout(1200);
+
+      // Extra pause every 10 pages
+      if (p > 0 && p % 10 === 0) await page.waitForTimeout(800);
+    }
+
+    // Final wait to catch any remaining lazy loads
+    await page.waitForTimeout(4000);
+
+    const sorted = sortPagesByNumber(pageImages);
+    log(`  Captured ${sorted.length} pages`);
+    return sorted;
+
   } catch (err) {
-    log(`  API error: ${err.message}`);
-    return null;
+    log(`  Error: ${err.message}`);
+    return sortPagesByNumber(pageImages);
+  } finally {
+    await page.close();
   }
-}
-
-// ---------------------------------------------------------------------------
-// Process a single brochure: download PDF, convert to images
-// ---------------------------------------------------------------------------
-async function processBrochure(page, brochure, slug) {
-  const match = brochure.url.match(/\/([^\/]+)\/ar\//);
-  if (!match) {
-    log(`  Could not extract identifier from: ${brochure.url}`);
-    return [];
-  }
-
-  const flyerIdentifier = match[1];
-  const regionId = brochure.url.match(/\/(\d+)$/)?.[1] || "3100";
-
-  log(`  Getting flyer info for: ${flyerIdentifier}`);
-  const flyerInfo = await getFlyerInfo(page, flyerIdentifier, regionId);
-
-  if (!flyerInfo) {
-    log(`  No flyer info found`);
-    return [];
-  }
-
-  const pdfUrl = flyerInfo.pdfUrl || flyerInfo.hiResPdfUrl;
-  if (!pdfUrl) {
-    log(`  No PDF URL in flyer info`);
-    return [];
-  }
-
-  log(`  PDF URL: ${pdfUrl}`);
-
-  // Download PDF
-  const pdfPath = path.join(__dirname, `${slug}.pdf`);
-  try {
-    await downloadFile(pdfUrl, pdfPath);
-    const stats = fs.statSync(pdfPath);
-    log(`  PDF downloaded: ${(stats.size / 1024).toFixed(0)} KB`);
-  } catch (err) {
-    log(`  PDF download failed: ${err.message}`);
-    return [];
-  }
-
-  // Convert to images
-  const pagesDir = path.join(PAGES_DIR, slug);
-  const imageFiles = convertPdfToImages(pdfPath, pagesDir);
-
-  // Clean up PDF
-  try { fs.unlinkSync(pdfPath); } catch {}
-
-  // Return relative paths (will be served from GitHub raw)
-  return imageFiles.map(f => path.relative(__dirname, f).replace(/\\/g, "/"));
 }
 
 // ---------------------------------------------------------------------------
@@ -255,23 +189,6 @@ async function scrapeLidlListing(context) {
     }
     await page.waitForTimeout(2000);
 
-    // Intercept the Lidl leaflets API call
-    const lidlBrochures = [];
-    const apiResponses = [];
-
-    page.on("response", async (response) => {
-      const url = response.url();
-      if (url.includes("endpoints.leaflets.schwarz") && url.includes("flyer")) {
-        try {
-          const json = await response.json();
-          if (json.success && json.flyer) {
-            apiResponses.push(json.flyer);
-          }
-        } catch {}
-      }
-    });
-
-    // Also look for brochure links
     const brochures = await page.evaluate(() => {
       const results = [];
       const seen = new Set();
@@ -283,6 +200,7 @@ async function scrapeLidlListing(context) {
           !href.match(/broshura|leaflet/i)
         ) return;
         if (seen.has(href) || href === window.location.href || href.includes("#")) return;
+        if (href.length < 30) return;
         seen.add(href);
         const img = link.querySelector("img") ||
           link.closest("article, li, [class*='item']")?.querySelector("img");
@@ -314,9 +232,7 @@ async function scrapeLidlListing(context) {
 // Main
 // ---------------------------------------------------------------------------
 async function main() {
-  log("=== LoyalHub Brochure Scraper (PDF mode) ===");
-
-  ensureDir(PAGES_DIR);
+  log("=== LoyalHub Brochure Scraper ===");
 
   const browser = await chromium.launch({
     headless: true,
@@ -340,12 +256,6 @@ async function main() {
     window.chrome = { runtime: {} };
   });
 
-  // Shared page for API calls
-  const apiPage = await context.newPage();
-
-  const REPO_USER = "liverpoolchety-del";
-  const REPO_NAME = "loyalhub-scraper";
-
   try {
     const [kauflandList, lidlList] = await Promise.all([
       scrapeKauflandListing(context),
@@ -354,44 +264,17 @@ async function main() {
 
     const processStore = async (brochures, storeName) => {
       const enriched = [];
-      for (let i = 0; i < brochures.length; i++) {
-        const b = brochures[i];
-        const slug = `${storeName.toLowerCase()}_${i}`;
-        log(`Processing ${storeName}[${i + 1}]: ${b.url}`);
-
-        const relPaths = await processBrochure(apiPage, b, slug);
-        const pageUrls = relPaths.map(p =>
-          `https://raw.githubusercontent.com/${REPO_USER}/${REPO_NAME}/main/${p}`
-        );
-
-        // Update title from API if available
-        const flyerMatch = b.url.match(/\/([^\/]+)\/ar\//);
-        let title = b.title;
-        let validFrom = b.validFrom;
-        let validTo = b.validTo;
-
-        if (flyerMatch) {
-          const info = await getFlyerInfo(apiPage, flyerMatch[1], "3100");
-          if (info) {
-            title = info.name || title;
-            if (info.title) {
-              const dates = info.title.match(/(\d{2}\.\d{2}\.\d{4})\s*-\s*(\d{2}\.\d{2}\.\d{4})/);
-              if (dates) { validFrom = dates[1]; validTo = dates[2]; }
-            }
-          }
-        }
-
+      for (const b of brochures) {
+        const pages = await getAllBrochurePages(context, b.url, storeName);
         enriched.push({
           store: storeName,
-          title: `${title} брошура`,
-          thumbnail: b.thumbnail || pageUrls[0] || "",
+          title: b.title,
+          thumbnail: b.thumbnail || pages[0] || "",
           url: b.url,
-          validFrom,
-          validTo,
-          pages: pageUrls,
+          validFrom: b.validFrom,
+          validTo: b.validTo,
+          pages,
         });
-
-        log(`  ${storeName}[${i + 1}]: ${pageUrls.length} pages`);
       }
       return enriched;
     };
@@ -399,7 +282,6 @@ async function main() {
     const kaufland = await processStore(kauflandList, "Kaufland");
     const lidl = await processStore(lidlList, "Lidl");
 
-    // Keep existing if nothing found
     let existing = { stores: { kaufland: [], lidl: [] } };
     if (fs.existsSync(OUTPUT_PATH)) {
       try { existing = JSON.parse(fs.readFileSync(OUTPUT_PATH, "utf8")); } catch {}
@@ -424,7 +306,6 @@ async function main() {
       log(`  Lidl[${i + 1}] "${b.title}": ${b.pages.length} pages`)
     );
   } finally {
-    await apiPage.close();
     await browser.close();
   }
 }
