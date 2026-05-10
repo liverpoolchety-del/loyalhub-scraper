@@ -25,7 +25,10 @@ jobs:
           node-version: "20"
 
       - name: Install poppler-utils
-        run: sudo apt-get install -y poppler-utils
+        run: |
+          sudo apt-get install -y poppler-utils
+          which pdftoppm
+          pdftoppm -v
 
       - name: Install dependencies
         run: npm install
