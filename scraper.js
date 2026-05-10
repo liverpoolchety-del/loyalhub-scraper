@@ -260,14 +260,7 @@ async function scrapeLidlListing(context) {
 async function main() {
   log("=== LoyalHub Brochure Scraper (PDF mode) ===");
 
-// Install poppler-utils for PDF conversion if not available
-  try {
-    execSync("which pdftoppm", { stdio: "ignore" });
-    log("pdftoppm available");
-  } catch {
-    log("Installing poppler-utils...");
-    execSync("apt-get install -y poppler-utils", { stdio: "inherit" });
-  }
+log("pdftoppm ready");
 
   ensureDir(PDFS_DIR);
   ensureDir(PAGES_DIR);
