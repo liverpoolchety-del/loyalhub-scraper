@@ -51,28 +51,64 @@ function downloadFile(url, destPath) {
 // ---------------------------------------------------------------------------
 function convertPdfToImages(pdfPath, outputDir) {
   ensureDir(outputDir);
-  const result = spawnSync("/usr/bin/pdftoppm", [
-    "-jpeg",
-    "-r", "150",    // 150 DPI — good quality, reasonable file size
-    "-jpegopt", "quality=85",
-    pdfPath,
-    path.join(outputDir, "page"),
-  ], { timeout: 120000 });
-
-  if (result.error) {
-    log(`  pdftoppm error: ${result.error.message}`);
-    return [];
+  
+  // Try multiple possible paths for pdftoppm
+  const possiblePaths = [
+    "pdftoppm",
+    "/usr/bin/pdftoppm", 
+    "/usr/local/bin/pdftoppm",
+    "/opt/homebrew/bin/pdftoppm",
+  ];
+  
+  let pdftoppmPath = null;
+  for (const p of possiblePaths) {
+    const check = spawnSync("which", [p.replace("/", "").split("/").pop()]);
+    if (check.status === 0) { pdftoppmPath = p; break; }
+  }
+  
+  // Find it via shell
+  if (!pdftoppmPath) {
+    const which = spawnSync("sh", ["-c", "which pdftoppm || find / -name pdftoppm 2>/dev/null | head -1"]);
+    const found = which.stdout?.toString().trim();
+    if (found) pdftoppmPath = found;
   }
 
-  const files = fs.readdirSync(outputDir)
+  if (!pdftoppmPath) {
+    log(`  pdftoppm not found, trying convert (ImageMagick)`);
+    // Try ImageMagick as fallback
+    const result = spawnSync("convert", [
+      "-density", "150",
+      pdfPath,
+      "-quality", "85",
+      path.join(outputDir, "page-%03d.jpg"),
+    ], { timeout: 120000 });
+    
+    if (result.error) {
+      log(`  ImageMagick also failed: ${result.error.message}`);
+      return [];
+    }
+  } else {
+    log(`  Using pdftoppm at: ${pdftoppmPath}`);
+    const result = spawnSync(pdftoppmPath, [
+      "-jpeg", "-r", "150",
+      pdfPath,
+      path.join(outputDir, "page"),
+    ], { timeout: 120000 });
+    
+    if (result.error) {
+      log(`  pdftoppm error: ${result.error.message}`);
+      return [];
+    }
+  }
+
+  const files = fs.existsSync(outputDir) ? fs.readdirSync(outputDir)
     .filter(f => f.match(/\.(jpg|jpeg|ppm)$/i))
     .sort()
-    .map(f => path.join(outputDir, f));
+    .map(f => path.join(outputDir, f)) : [];
 
-  log(`  Converted ${files.length} pages from PDF`);
+  log(`  Converted ${files.length} pages`);
   return files;
 }
-
 // ---------------------------------------------------------------------------
 // Call the Schwarz leaflets API to get flyer info including PDF URL
 // ---------------------------------------------------------------------------
