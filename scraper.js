@@ -40,6 +40,8 @@ async function getAllBrochurePages(context, brochureUrl, storeName) {
     
     const json = await response.json();
     log(`  API response received, parsing pages...`);
+     // DEBUG: log the first 2000 chars of the API response
+    log(`  API RAW: ${jsonStr.substring(0, 2000)}`);
     
     // Extract all page image URLs from the API response
     const pageImages = [];
