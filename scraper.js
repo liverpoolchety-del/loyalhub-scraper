@@ -167,31 +167,6 @@ async function scrapeLidlListing(context) {
   try {
     log("Scraping Lidl listing...");
 
-    // Intercept the leaflets.schwarz API calls that Lidl's site makes
-    const flyerIdentifiers = [];
-    page.on("response", async (response) => {
-      const url = response.url();
-      if (url.includes("endpoints.leaflets.schwarz") && url.includes("flyer")) {
-        try {
-          const json = await response.json();
-          if (json.success && json.flyer) {
-            const id = json.flyer.id;
-            const identifier = url.match(/flyer_identifier=([^&]+)/)?.[1];
-            if (identifier && !flyerIdentifiers.find(f => f.identifier === identifier)) {
-              flyerIdentifiers.push({
-                identifier,
-                id,
-                title: json.flyer.title || "Lidl брошура",
-                pdfUrl: json.flyer.pdfUrl || "",
-                thumbnail: json.flyer.teasers?.teaser_322x230 || "",
-              });
-              log(`  Found Lidl flyer: ${identifier}`);
-            }
-          }
-        } catch {}
-      }
-    });
-
     await page.goto("https://www.lidl.bg/c/broshurite-na-lidl/s10017542", {
       waitUntil: "networkidle",
       timeout: 45000,
@@ -202,23 +177,80 @@ async function scrapeLidlListing(context) {
       await page.evaluate(() => window.scrollBy(0, window.innerHeight));
       await page.waitForTimeout(600);
     }
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(2000);
 
-    log(`Lidl: found ${flyerIdentifiers.length} flyers via API interception`);
+    // Extract brochure viewer links — Lidl uses leaflets.schwarz viewer
+    const brochures = await page.evaluate(() => {
+      const results = [];
+      const seen = new Set();
 
-    // Convert to brochure format with leaflets.schwarz viewer URLs
-    return flyerIdentifiers.slice(0, 4).map(f => {
-      // Extract dates from title like "04.05.2026 - 10.05.2026"
-      const dateMatch = f.title.match(/(\d{2}\.\d{2}\.\d{4})\s*-\s*(\d{2}\.\d{2}\.\d{4})/);
-      return {
-        url: `https://leaflets.schwarz/bg-BG/${f.identifier}/ar/`,
-        thumbnail: f.thumbnail,
-        title: "Lidl брошура",
-        validFrom: dateMatch?.[1] || "",
-        validTo: dateMatch?.[2] || "",
-        flyerIdentifier: f.identifier,
-      };
+      // Look for any link containing leaflets.schwarz
+      document.querySelectorAll("a[href]").forEach(link => {
+        const href = link.href || "";
+        if (!href.includes("leaflets.schwarz") && !href.includes("leaflets.lidl")) return;
+        if (seen.has(href)) return;
+        seen.add(href);
+        const img = link.querySelector("img") ||
+          link.closest("article, li, [class*='item'], [class*='card']")?.querySelector("img");
+        const container = link.closest("article, li, [class*='item'], [class*='card']") || link.parentElement;
+        const text = container?.innerText || "";
+        const dateMatch = text.match(/(\d{2}\.\d{2}\.\d{4})\s*[–\-—]\s*(\d{2}\.\d{2}\.\d{4})/);
+        results.push({
+          url: href,
+          thumbnail: img?.src || "",
+          title: img?.alt || "Lidl брошура",
+          validFrom: dateMatch?.[1] || "",
+          validTo: dateMatch?.[2] || "",
+        });
+      });
+
+      // Also look for data attributes with leaflets URLs
+      document.querySelectorAll("[data-href], [data-url], [data-link]").forEach(el => {
+        const href = el.getAttribute("data-href") || el.getAttribute("data-url") || el.getAttribute("data-link") || "";
+        if (!href.includes("leaflets") || seen.has(href)) return;
+        seen.add(href);
+        const img = el.querySelector("img");
+        results.push({
+          url: href,
+          thumbnail: img?.src || "",
+          title: "Lidl брошура",
+          validFrom: "",
+          validTo: "",
+        });
+      });
+
+      return results;
     });
+
+    if (brochures.length > 0) {
+      log(`Lidl: found ${brochures.length} brochures via links`);
+      return brochures.slice(0, 4);
+    }
+
+    // Fallback: look for brochure thumbnail images that link somewhere
+    const fallback = await page.evaluate(() => {
+      const results = [];
+      // Find all images that look like brochure covers
+      document.querySelectorAll("img").forEach(img => {
+        const src = img.src || "";
+        if (!src.includes("leaflet") && !src.includes("broshur") && !src.includes("imgproxy")) return;
+        const link = img.closest("a");
+        if (!link) return;
+        const href = link.href || "";
+        if (!href || href === window.location.href) return;
+        results.push({
+          url: href,
+          thumbnail: src,
+          title: img.alt || "Lidl брошура",
+          validFrom: "",
+          validTo: "",
+        });
+      });
+      return results;
+    });
+
+    log(`Lidl: found ${fallback.length} brochures via image fallback`);
+    return fallback.slice(0, 4);
   } catch (err) {
     log(`Lidl listing error: ${err.message}`);
     return [];
