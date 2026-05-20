@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-05-19T16:43:32.353Z",
-  "date": "2026-05-19",
+  "updatedAt": "2026-05-20T16:41:08.795Z",
+  "date": "2026-05-20",
   "stores": {
     "kaufland": [
       {
@@ -163,7 +163,7 @@
       {
         "store": "Kaufland",
         "title": "Kaufland брошура",
-        "thumbnail": "https://imgproxy.leaflets.schwarz/pYUVDNHFNUWD3QP66DgjJU8o_6_SU91mfga0xxerVZM/rs:fit:150:0:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZTFjNGQtOTQzYy03MDY3LWI1MDctMjdlYWEwMTk0NjhjL3BhZ2UtMV9jMDg4NTkxNzU3MWMwN2Q2NzBiM2UxOTgzNWIwMzk5OC5wbmc.jpg",
+        "thumbnail": "https://imgproxy.leaflets.schwarz/-Y-DreVK5jwUQd0V9hacmDIZ2XlJZ57G5XbWbq8twsE/rs:fit:150:0:1/g:no/czM6Ly9sZWFmbGV0cy9pbWFnZXMvMDE5ZTFjNGQtOTQzYy03MDY3LWI1MDctMjdlYWEwMTk0NjhjL3BhZ2UtMV9mNzkxMGIwMDcxMzBmYjI3Zjg1NmZmMDM1Njc4YjBmMi5wbmc.jpg",
         "url": "https://leaflets.kaufland.com/bg-BG/BG_bg_leaflet4_3100_BG21-FL4/ar/3100",
         "validFrom": "18.05.2026",
         "validTo": "24.05.2026",
