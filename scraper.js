@@ -164,93 +164,80 @@ async function scrapeKauflandListing(context) {
 // ---------------------------------------------------------------------------
 async function scrapeLidlListing(context) {
   const page = await context.newPage();
+  const foundBrochures = [];
+
   try {
     log("Scraping Lidl listing...");
 
-    await page.goto("https://www.lidl.bg/c/broshurite-na-lidl/s10017542", {
-      waitUntil: "networkidle",
-      timeout: 45000,
-    });
-    await page.waitForTimeout(3000);
+    // Intercept ALL network responses to catch any leaflets API calls
+    page.on("response", async (response) => {
+      const url = response.url();
+      const type = response.headers()["content-type"] || "";
 
-    for (let i = 0; i < 5; i++) {
-      await page.evaluate(() => window.scrollBy(0, window.innerHeight));
-      await page.waitForTimeout(600);
+      if (!type.includes("json")) return;
+      if (
+        !url.includes("lidl") &&
+        !url.includes("leaflets") &&
+        !url.includes("schwarz") &&
+        !url.includes("lidl-plus")
+      ) return;
+
+      try {
+        const json = await response.json();
+        const str = JSON.stringify(json);
+        // Log any JSON response that mentions brochures/leaflets
+        if (
+          str.includes("flyer") ||
+          str.includes("leaflet") ||
+          str.includes("brochure") ||
+          str.includes("imgproxy")
+        ) {
+          log(`  Lidl JSON response from: ${url.substring(0, 120)}`);
+          log(`  Content preview: ${str.substring(0, 400)}`);
+        }
+      } catch {}
+    });
+
+    // Try both Lidl BG brochure pages
+    const pagesToTry = [
+      "https://www.lidl.bg/c/broshurite-na-lidl/s10017542",
+      "https://www.lidl.bg/c/broshura/s10020060",
+    ];
+
+    for (const url of pagesToTry) {
+      log(`  Trying: ${url}`);
+      await page.goto(url, { waitUntil: "networkidle", timeout: 45000 });
+      await page.waitForTimeout(3000);
+      for (let i = 0; i < 5; i++) {
+        await page.evaluate(() => window.scrollBy(0, window.innerHeight));
+        await page.waitForTimeout(600);
+      }
+      await page.waitForTimeout(3000);
+
+      // Log ALL links found on page
+      const links = await page.evaluate(() =>
+        Array.from(document.querySelectorAll("a[href]"))
+          .map(a => a.href)
+          .filter(h => h.length > 20)
+          .slice(0, 30)
+      );
+      log(`  Links found on ${url}:`);
+      links.forEach(l => log(`    ${l}`));
+
+      // Log ALL iframes
+      const iframes = await page.evaluate(() =>
+        Array.from(document.querySelectorAll("iframe"))
+          .map(f => f.src || f.getAttribute("data-src") || "")
+          .filter(Boolean)
+      );
+      if (iframes.length) {
+        log(`  Iframes found:`);
+        iframes.forEach(f => log(`    ${f}`));
+      }
     }
-    await page.waitForTimeout(2000);
 
-    // Extract brochure viewer links — Lidl uses leaflets.schwarz viewer
-    const brochures = await page.evaluate(() => {
-      const results = [];
-      const seen = new Set();
-
-      // Look for any link containing leaflets.schwarz
-      document.querySelectorAll("a[href]").forEach(link => {
-        const href = link.href || "";
-        if (!href.includes("leaflets.schwarz") && !href.includes("leaflets.lidl")) return;
-        if (seen.has(href)) return;
-        seen.add(href);
-        const img = link.querySelector("img") ||
-          link.closest("article, li, [class*='item'], [class*='card']")?.querySelector("img");
-        const container = link.closest("article, li, [class*='item'], [class*='card']") || link.parentElement;
-        const text = container?.innerText || "";
-        const dateMatch = text.match(/(\d{2}\.\d{2}\.\d{4})\s*[–\-—]\s*(\d{2}\.\d{2}\.\d{4})/);
-        results.push({
-          url: href,
-          thumbnail: img?.src || "",
-          title: img?.alt || "Lidl брошура",
-          validFrom: dateMatch?.[1] || "",
-          validTo: dateMatch?.[2] || "",
-        });
-      });
-
-      // Also look for data attributes with leaflets URLs
-      document.querySelectorAll("[data-href], [data-url], [data-link]").forEach(el => {
-        const href = el.getAttribute("data-href") || el.getAttribute("data-url") || el.getAttribute("data-link") || "";
-        if (!href.includes("leaflets") || seen.has(href)) return;
-        seen.add(href);
-        const img = el.querySelector("img");
-        results.push({
-          url: href,
-          thumbnail: img?.src || "",
-          title: "Lidl брошура",
-          validFrom: "",
-          validTo: "",
-        });
-      });
-
-      return results;
-    });
-
-    if (brochures.length > 0) {
-      log(`Lidl: found ${brochures.length} brochures via links`);
-      return brochures.slice(0, 4);
-    }
-
-    // Fallback: look for brochure thumbnail images that link somewhere
-    const fallback = await page.evaluate(() => {
-      const results = [];
-      // Find all images that look like brochure covers
-      document.querySelectorAll("img").forEach(img => {
-        const src = img.src || "";
-        if (!src.includes("leaflet") && !src.includes("broshur") && !src.includes("imgproxy")) return;
-        const link = img.closest("a");
-        if (!link) return;
-        const href = link.href || "";
-        if (!href || href === window.location.href) return;
-        results.push({
-          url: href,
-          thumbnail: src,
-          title: img.alt || "Lidl брошура",
-          validFrom: "",
-          validTo: "",
-        });
-      });
-      return results;
-    });
-
-    log(`Lidl: found ${fallback.length} brochures via image fallback`);
-    return fallback.slice(0, 4);
+    log(`Lidl: found ${foundBrochures.length} brochures`);
+    return foundBrochures;
   } catch (err) {
     log(`Lidl listing error: ${err.message}`);
     return [];
@@ -258,7 +245,6 @@ async function scrapeLidlListing(context) {
     await page.close();
   }
 }
-
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
