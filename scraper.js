@@ -169,72 +169,55 @@ async function scrapeLidlListing(context) {
   try {
     log("Scraping Lidl listing...");
 
-    // Intercept ALL network responses to catch any leaflets API calls
+    // Intercept PDF URLs from the Schwarz storage CDN
     page.on("response", async (response) => {
       const url = response.url();
-      const type = response.headers()["content-type"] || "";
-
-      if (!type.includes("json")) return;
       if (
-        !url.includes("lidl") &&
-        !url.includes("leaflets") &&
-        !url.includes("schwarz") &&
-        !url.includes("lidl-plus")
-      ) return;
+        url.includes("object.storage.eu01.onstackit.cloud") &&
+        url.includes(".pdf")
+      ) {
+        log(`  Found Lidl PDF: ${url}`);
+        foundBrochures.push({
+          url: "https://www.lidl.bg/c/broshura/s10020060",
+          pdfUrl: url,
+          thumbnail: "",
+          title: "Lidl брошура",
+          validFrom: "",
+          validTo: "",
+        });
+      }
 
-      try {
-        const json = await response.json();
-        const str = JSON.stringify(json);
-        // Log any JSON response that mentions brochures/leaflets
-        if (
-          str.includes("flyer") ||
-          str.includes("leaflet") ||
-          str.includes("brochure") ||
-          str.includes("imgproxy")
-        ) {
-          log(`  Lidl JSON response from: ${url.substring(0, 120)}`);
-          log(`  Content preview: ${str.substring(0, 400)}`);
-        }
-      } catch {}
+      // Also intercept endpoints.leaflets.schwarz API calls
+      if (url.includes("endpoints.leaflets.schwarz")) {
+        log(`  Lidl API call: ${url}`);
+        try {
+          const json = await response.json();
+          const str = JSON.stringify(json);
+          if (str.includes("pdfUrl") || str.includes("pdf_url")) {
+            const pdfMatch = str.match(/https:\\\/\\\/object\.storage[^"]+\.pdf/);
+            if (pdfMatch) {
+              const pdfUrl = pdfMatch[0].replace(/\\\//g, "/");
+              log(`  Found PDF via API: ${pdfUrl}`);
+            }
+          }
+          log(`  API preview: ${str.substring(0, 300)}`);
+        } catch {}
+      }
     });
 
-    // Try both Lidl BG brochure pages
-    const pagesToTry = [
-      "https://www.lidl.bg/c/broshurite-na-lidl/s10017542",
-      "https://www.lidl.bg/c/broshura/s10020060",
-    ];
+    // Navigate to the brochure page
+    await page.goto("https://www.lidl.bg/c/broshura/s10020060", {
+      waitUntil: "domcontentloaded",
+      timeout: 45000,
+    });
+    await page.waitForTimeout(8000);
 
-    for (const url of pagesToTry) {
-      log(`  Trying: ${url}`);
-     await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45000 });
-    await page.waitForTimeout(6000); // Wait longer for JS to render brochures
-      for (let i = 0; i < 5; i++) {
-        await page.evaluate(() => window.scrollBy(0, window.innerHeight));
-        await page.waitForTimeout(600);
-      }
-      await page.waitForTimeout(3000);
-
-      // Log ALL links found on page
-      const links = await page.evaluate(() =>
-        Array.from(document.querySelectorAll("a[href]"))
-          .map(a => a.href)
-          .filter(h => h.length > 20)
-          .slice(0, 30)
-      );
-      log(`  Links found on ${url}:`);
-      links.forEach(l => log(`    ${l}`));
-
-      // Log ALL iframes
-      const iframes = await page.evaluate(() =>
-        Array.from(document.querySelectorAll("iframe"))
-          .map(f => f.src || f.getAttribute("data-src") || "")
-          .filter(Boolean)
-      );
-      if (iframes.length) {
-        log(`  Iframes found:`);
-        iframes.forEach(f => log(`    ${f}`));
-      }
-    }
+    // Also try the other brochure page
+    await page.goto("https://www.lidl.bg/c/broshurite-na-lidl/s10017542", {
+      waitUntil: "domcontentloaded",
+      timeout: 45000,
+    });
+    await page.waitForTimeout(8000);
 
     log(`Lidl: found ${foundBrochures.length} brochures`);
     return foundBrochures;
@@ -287,7 +270,9 @@ const context = await browser.newContext({
     const processStore = async (brochures, storeName) => {
       const enriched = [];
       for (const b of brochures) {
-        const pages = await getAllBrochurePages(context, b.url, storeName);
+        const pages = b.pdfUrl
+          ? await getAllBrochurePages(context, b.pdfUrl, storeName)
+          : await getAllBrochurePages(context, b.url, storeName);
         enriched.push({
           store: storeName,
           title: b.title,
