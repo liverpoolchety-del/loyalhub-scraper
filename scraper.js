@@ -265,8 +265,8 @@ async function scrapeLidlListing(context) {
         title: "Lidl брошура",
         thumbnail: sorted[0] || "",
         url: viewerUrl,
-        validFrom: "01.06.2026",
-        validTo: "07.06.2026",
+        validFrom: "",
+        validTo: "",
         pages: sorted,
         _alreadyHasPages: true,  // flag so processStore doesn't re-scrape
       }];
