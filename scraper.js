@@ -15,12 +15,9 @@ function sortPagesByNumber(urls) {
   return [...new Set(urls)].sort((a, b) => {
     const getNum = (url) => {
       try {
-        // Extract the base64 part after /g:no/
         const b64Part = url.split("/g:no/")[1]?.replace(/\.[^.]+$/, "") || "";
-        // Try URL-safe base64 decode
         const padded = b64Part + "=".repeat((4 - b64Part.length % 4) % 4);
         const decoded = Buffer.from(padded, "base64").toString("utf8");
-        // Match page-01, page-02, page-1, page-2 etc
         const match = decoded.match(/page[-_]?0*(\d+)/i);
         if (match) return parseInt(match[1], 10);
         return 999;
@@ -33,7 +30,7 @@ function sortPagesByNumber(urls) {
 }
 
 // ---------------------------------------------------------------------------
-// Get all pages for a brochure using network interception
+// Get all pages for a brochure using network interception (Kaufland/Lidl)
 // ---------------------------------------------------------------------------
 async function getAllBrochurePages(context, brochureUrl, storeName) {
   const page = await context.newPage();
@@ -43,7 +40,6 @@ async function getAllBrochurePages(context, brochureUrl, storeName) {
   try {
     log(`  Opening: ${brochureUrl}`);
 
-    // Capture ALL imgproxy image responses
     page.on("response", async (response) => {
       const url = response.url();
       if (!url.includes("imgproxy.leaflets.schwarz")) return;
@@ -52,7 +48,6 @@ async function getAllBrochurePages(context, brochureUrl, storeName) {
         const buf = await response.body();
         if (buf.length > 30000) {
           seen.add(url);
-          // Upgrade to 1200px
           const hiRes = url
             .replace(/rs:fit:\d+:\d+:\d+/, "rs:fit:1200:1200:1")
             .replace(/rs:fit:\d+:0:\d+/, "rs:fit:1200:1200:1")
@@ -65,7 +60,6 @@ async function getAllBrochurePages(context, brochureUrl, storeName) {
     await page.goto(brochureUrl, { waitUntil: "networkidle", timeout: 45000 });
     await page.waitForTimeout(3000);
 
-    // Get total page count from viewer UI
     const totalPages = await page.evaluate(() => {
       const all = Array.from(document.querySelectorAll("*"));
       for (const el of all) {
@@ -75,29 +69,23 @@ async function getAllBrochurePages(context, brochureUrl, storeName) {
           if (m) return parseInt(m[1]);
         }
       }
-      return 60; // default max
+      return 60;
     });
 
     log(`  Detected ${totalPages} pages, clicking through...`);
 
-    // Click through ALL pages with adequate wait time
-    const totalClicks = totalPages + 5; // a few extra clicks to catch last pages
+    const totalClicks = totalPages + 5;
     for (let p = 0; p < totalClicks; p++) {
-      // Try clicking next button first, fall back to ArrowRight
-     await page.keyboard.press("ArrowRight");
+      await page.keyboard.press("ArrowRight");
       await page.waitForTimeout(1200);
-
-      // Extra pause every 10 pages
       if (p > 0 && p % 10 === 0) await page.waitForTimeout(800);
     }
 
-    // Final wait to catch any remaining lazy loads
     await page.waitForTimeout(4000);
 
     const sorted = sortPagesByNumber(pageImages);
     log(`  Captured ${sorted.length} pages`);
     return sorted;
-
   } catch (err) {
     log(`  Error: ${err.message}`);
     return sortPagesByNumber(pageImages);
@@ -171,11 +159,8 @@ async function scrapeLidlListing(context) {
   try {
     log("Scraping Lidl brochure viewer...");
 
-    // Capture page images AND any PDF url
     page.on("response", async (response) => {
       const url = response.url();
-
-      // Capture brochure page images from any leaflets CDN
       if (
         (url.includes("imgproxy") || url.includes("leaflets") || url.includes("flyer")) &&
         url.match(/\.(jpg|jpeg|png|webp)/i) &&
@@ -189,18 +174,13 @@ async function scrapeLidlListing(context) {
           }
         } catch {}
       }
-
-      // Capture PDF url
       if (url.includes(".pdf") && url.includes("storage")) {
         pdfUrl = url;
         log(`  Found Lidl PDF: ${url}`);
       }
     });
 
-// Step 1: Find the current brochure viewer URL automatically
     let viewerUrl = null;
-
-    // The Lidl leaflet hub page lists current brochures with /l/bg/broshura/ links
     const hubUrls = [
       "https://www.lidl.bg/l/bg/",
       "https://www.lidl.bg/l/bg/broshura",
@@ -212,7 +192,6 @@ async function scrapeLidlListing(context) {
         await page.goto(hub, { waitUntil: "domcontentloaded", timeout: 45000 });
         await page.waitForTimeout(5000);
 
-        // Look for any link matching the /l/bg/broshura/<id>/view pattern
         const found = await page.evaluate(() => {
           const links = Array.from(document.querySelectorAll("a[href]"))
             .map(a => a.href)
@@ -226,7 +205,6 @@ async function scrapeLidlListing(context) {
           break;
         }
 
-        // Also check the page's HTML/scripts for the brochura id pattern
         const html = await page.content();
         const match = html.match(/\/l\/bg\/broshura\/([0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[a-f0-9]+)/);
         if (match) {
@@ -248,7 +226,6 @@ async function scrapeLidlListing(context) {
     await page.goto(viewerUrl, { waitUntil: "domcontentloaded", timeout: 45000 });
     await page.waitForTimeout(6000);
 
-    // Click through pages to load all images
     for (let p = 0; p < 60; p++) {
       await page.keyboard.press("ArrowRight");
       await page.waitForTimeout(700);
@@ -258,7 +235,6 @@ async function scrapeLidlListing(context) {
     log(`  Lidl: captured ${pageImages.length} page images, PDF: ${pdfUrl ? "yes" : "no"}`);
 
     if (pageImages.length > 0) {
-      // Sort and return as a brochure
       const sorted = sortPagesByNumber(pageImages);
       return [{
         store: "Lidl",
@@ -268,7 +244,7 @@ async function scrapeLidlListing(context) {
         validFrom: "",
         validTo: "",
         pages: sorted,
-        _alreadyHasPages: true,  // flag so processStore doesn't re-scrape
+        _alreadyHasPages: true,
       }];
     }
 
@@ -281,30 +257,15 @@ async function scrapeLidlListing(context) {
   }
 }
 
-return [];
-  } catch (err) {
-    log(`Lidl error: ${err.message}`);
-    return [];
-  } finally {
-    await page.close();
-  }
-}
-
-// ===========================================================================
-// BROSHURA.BG SCRAPER
-// ===========================================================================
-
+// ---------------------------------------------------------------------------
+// Scrape broshura.bg (all other stores)
+// ---------------------------------------------------------------------------
 async function scrapeBroshura(context) {
   const page = await context.newPage();
   const results = {};
-
   try {
     log("=== Scraping broshura.bg ===");
-
-    await page.goto("https://www.broshura.bg/", {
-      waitUntil: "domcontentloaded",
-      timeout: 45000,
-    });
+    await page.goto("https://www.broshura.bg/", { waitUntil: "domcontentloaded", timeout: 45000 });
     await page.waitForTimeout(5000);
 
     for (let i = 0; i < 8; i++) {
@@ -347,14 +308,10 @@ async function scrapeBroshura(context) {
     log(`broshura.bg: found ${brochures.length} brochures on homepage`);
 
     const toProcess = brochures.slice(0, 15);
-
     for (const b of toProcess) {
       log(`  Processing broshura ${b.id} (${b.store})`);
       const pages = await scrapeBroshuraPages(context, b.url);
-      if (pages.length === 0) {
-        log(`    No pages captured, skipping`);
-        continue;
-      }
+      if (pages.length === 0) { log(`    No pages captured, skipping`); continue; }
       const storeKey = b.store.toLowerCase().replace(/[^a-z0-9]/g, "") || "broshura";
       if (!results[storeKey]) results[storeKey] = [];
       results[storeKey].push({
@@ -382,7 +339,6 @@ async function scrapeBroshuraPages(context, brochureUrl) {
   const page = await context.newPage();
   const pageImages = [];
   const seen = new Set();
-
   try {
     page.on("response", async (response) => {
       const url = response.url();
@@ -390,23 +346,15 @@ async function scrapeBroshuraPages(context, brochureUrl) {
       if (seen.has(url)) return;
       try {
         const buf = await response.body();
-        if (buf.length > 40000) {
-          seen.add(url);
-          pageImages.push(url);
-        }
+        if (buf.length > 40000) { seen.add(url); pageImages.push(url); }
       } catch {}
     });
 
-    await page.goto(brochureUrl + "#page-1", {
-      waitUntil: "domcontentloaded",
-      timeout: 45000,
-    });
+    await page.goto(brochureUrl + "#page-1", { waitUntil: "domcontentloaded", timeout: 45000 });
     await page.waitForTimeout(4000);
 
     for (let p = 2; p <= 60; p++) {
-      await page.evaluate((pageNum) => {
-        window.location.hash = `#page-${pageNum}`;
-      }, p);
+      await page.evaluate((pageNum) => { window.location.hash = `#page-${pageNum}`; }, p);
       await page.waitForTimeout(600);
       await page.keyboard.press("ArrowRight").catch(() => {});
       await page.waitForTimeout(300);
@@ -425,9 +373,6 @@ async function scrapeBroshuraPages(context, brochureUrl) {
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
-// ---------------------------------------------------------------------------
-// Main
-// ---------------------------------------------------------------------------
 async function main() {
   log("=== LoyalHub Brochure Scraper ===");
 
@@ -441,7 +386,7 @@ async function main() {
     ],
   });
 
-const context = await browser.newContext({
+  const context = await browser.newContext({
     userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
     locale: "bg-BG",
     viewport: { width: 1440, height: 900 },
@@ -454,7 +399,6 @@ const context = await browser.newContext({
     Object.defineProperty(navigator, "plugins", { get: () => [1, 2, 3, 4, 5] });
     Object.defineProperty(navigator, "languages", { get: () => ["bg-BG", "bg", "en-US", "en"] });
     window.chrome = { runtime: {}, loadTimes: () => {}, csi: () => {}, app: {} };
-    // Remove headless indicators
     delete window.navigator.__proto__.webdriver;
   });
 
@@ -467,9 +411,11 @@ const context = await browser.newContext({
     const processStore = async (brochures, storeName) => {
       const enriched = [];
       for (const b of brochures) {
-        const pages = b.pdfUrl
-          ? await getAllBrochurePages(context, b.pdfUrl, storeName)
-          : await getAllBrochurePages(context, b.url, storeName);
+        const pages = b._alreadyHasPages
+          ? b.pages
+          : (b.pdfUrl
+              ? await getAllBrochurePages(context, b.pdfUrl, storeName)
+              : await getAllBrochurePages(context, b.url, storeName));
         enriched.push({
           store: storeName,
           title: b.title,
@@ -491,7 +437,7 @@ const context = await browser.newContext({
       try { existing = JSON.parse(fs.readFileSync(OUTPUT_PATH, "utf8")); } catch {}
     }
 
-// Scrape broshura.bg for all other stores
+    // Scrape broshura.bg for all other stores
     const broshura = await scrapeBroshura(context);
 
     const result = {
@@ -500,7 +446,7 @@ const context = await browser.newContext({
       stores: {
         kaufland: kaufland.length > 0 ? kaufland : existing.stores.kaufland,
         lidl: lidl.length > 0 ? lidl : existing.stores.lidl,
-        ...broshura,  // adds billa, dm, technopolis, etc. as separate store keys
+        ...broshura,
       },
     };
 
@@ -513,6 +459,11 @@ const context = await browser.newContext({
     result.stores.lidl.forEach((b, i) =>
       log(`  Lidl[${i + 1}] "${b.title}": ${b.pages.length} pages`)
     );
+    Object.keys(broshura).forEach(key => {
+      broshura[key].forEach((b, i) =>
+        log(`  ${key}[${i + 1}] "${b.title}": ${b.pages.length} pages`)
+      );
+    });
   } finally {
     await browser.close();
   }
