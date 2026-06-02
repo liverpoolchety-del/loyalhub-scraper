@@ -164,65 +164,72 @@ async function scrapeKauflandListing(context) {
 // ---------------------------------------------------------------------------
 async function scrapeLidlListing(context) {
   const page = await context.newPage();
-  const foundBrochures = [];
+  const pageImages = [];
+  const seen = new Set();
+  let pdfUrl = null;
 
   try {
-    log("Scraping Lidl listing...");
+    log("Scraping Lidl brochure viewer...");
 
-    // Intercept PDF URLs from the Schwarz storage CDN
+    // Capture page images AND any PDF url
     page.on("response", async (response) => {
       const url = response.url();
-      if (
-        url.includes("object.storage.eu01.onstackit.cloud") &&
-        url.includes(".pdf")
-      ) {
-        log(`  Found Lidl PDF: ${url}`);
-        foundBrochures.push({
-          url: "https://www.lidl.bg/c/broshura/s10020060",
-          pdfUrl: url,
-          thumbnail: "",
-          title: "Lidl брошура",
-          validFrom: "",
-          validTo: "",
-        });
-      }
 
-      // Also intercept endpoints.leaflets.schwarz API calls
-      if (url.includes("endpoints.leaflets.schwarz")) {
-        log(`  Lidl API call: ${url}`);
+      // Capture brochure page images from any leaflets CDN
+      if (
+        (url.includes("imgproxy") || url.includes("leaflets") || url.includes("flyer")) &&
+        url.match(/\.(jpg|jpeg|png|webp)/i) &&
+        !seen.has(url)
+      ) {
         try {
-          const json = await response.json();
-          const str = JSON.stringify(json);
-          if (str.includes("pdfUrl") || str.includes("pdf_url")) {
-            const pdfMatch = str.match(/https:\\\/\\\/object\.storage[^"]+\.pdf/);
-            if (pdfMatch) {
-              const pdfUrl = pdfMatch[0].replace(/\\\//g, "/");
-              log(`  Found PDF via API: ${pdfUrl}`);
-            }
+          const buf = await response.body();
+          if (buf.length > 30000) {
+            seen.add(url);
+            pageImages.push(url);
           }
-          log(`  API preview: ${str.substring(0, 300)}`);
         } catch {}
       }
+
+      // Capture PDF url
+      if (url.includes(".pdf") && url.includes("storage")) {
+        pdfUrl = url;
+        log(`  Found Lidl PDF: ${url}`);
+      }
     });
 
-    // Navigate to the brochure page
-    await page.goto("https://www.lidl.bg/c/broshura/s10020060", {
-      waitUntil: "domcontentloaded",
-      timeout: 45000,
-    });
-    await page.waitForTimeout(8000);
+    // Navigate directly to the brochure VIEWER url (the /l/bg/ format)
+    const viewerUrl = "https://www.lidl.bg/l/bg/broshura/01-06-07-06-e5de04/view/menu/page/1";
+    log(`  Opening viewer: ${viewerUrl}`);
+    await page.goto(viewerUrl, { waitUntil: "domcontentloaded", timeout: 45000 });
+    await page.waitForTimeout(6000);
 
-    // Also try the other brochure page
-    await page.goto("https://www.lidl.bg/c/broshurite-na-lidl/s10017542", {
-      waitUntil: "domcontentloaded",
-      timeout: 45000,
-    });
-    await page.waitForTimeout(8000);
+    // Click through pages to load all images
+    for (let p = 0; p < 60; p++) {
+      await page.keyboard.press("ArrowRight");
+      await page.waitForTimeout(700);
+    }
+    await page.waitForTimeout(4000);
 
-    log(`Lidl: found ${foundBrochures.length} brochures`);
-    return foundBrochures;
+    log(`  Lidl: captured ${pageImages.length} page images, PDF: ${pdfUrl ? "yes" : "no"}`);
+
+    if (pageImages.length > 0) {
+      // Sort and return as a brochure
+      const sorted = sortPagesByNumber(pageImages);
+      return [{
+        store: "Lidl",
+        title: "Lidl брошура",
+        thumbnail: sorted[0] || "",
+        url: viewerUrl,
+        validFrom: "01.06.2026",
+        validTo: "07.06.2026",
+        pages: sorted,
+        _alreadyHasPages: true,  // flag so processStore doesn't re-scrape
+      }];
+    }
+
+    return [];
   } catch (err) {
-    log(`Lidl listing error: ${err.message}`);
+    log(`Lidl error: ${err.message}`);
     return [];
   } finally {
     await page.close();
