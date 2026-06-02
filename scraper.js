@@ -280,6 +280,151 @@ async function scrapeLidlListing(context) {
     await page.close();
   }
 }
+
+return [];
+  } catch (err) {
+    log(`Lidl error: ${err.message}`);
+    return [];
+  } finally {
+    await page.close();
+  }
+}
+
+// ===========================================================================
+// BROSHURA.BG SCRAPER
+// ===========================================================================
+
+async function scrapeBroshura(context) {
+  const page = await context.newPage();
+  const results = {};
+
+  try {
+    log("=== Scraping broshura.bg ===");
+
+    await page.goto("https://www.broshura.bg/", {
+      waitUntil: "domcontentloaded",
+      timeout: 45000,
+    });
+    await page.waitForTimeout(5000);
+
+    for (let i = 0; i < 8; i++) {
+      await page.evaluate(() => window.scrollBy(0, window.innerHeight));
+      await page.waitForTimeout(700);
+    }
+    await page.waitForTimeout(2000);
+
+    const brochures = await page.evaluate(() => {
+      const out = [];
+      const seen = new Set();
+      document.querySelectorAll('a[href*="/b/"]').forEach(link => {
+        const href = link.href || "";
+        const m = href.match(/\/b\/(\d+)/);
+        if (!m) return;
+        const id = m[1];
+        if (seen.has(id)) return;
+        seen.add(id);
+        const tile = link.closest("[class*='leaflet'], [class*='brochure'], [class*='card'], article, li, [class*='item']") || link.parentElement;
+        const text = tile ? tile.innerText : "";
+        const img = (tile && tile.querySelector("img")) || link.querySelector("img");
+        let store = img?.alt || "";
+        if (!store && tile) {
+          const heading = tile.querySelector("h2, h3, h4, [class*='title'], [class*='name'], [class*='shop']");
+          store = heading?.innerText?.trim() || "";
+        }
+        const dateMatch = text.match(/(\d{2}\.\d{2}(?:\.\d{4})?)\s*[–\-—]\s*(\d{2}\.\d{2}(?:\.\d{4})?)/);
+        out.push({
+          id,
+          url: `https://www.broshura.bg/b/${id}`,
+          store: store.trim() || "Брошура",
+          thumbnail: img?.src || img?.getAttribute("data-src") || "",
+          validFrom: dateMatch?.[1] || "",
+          validTo: dateMatch?.[2] || "",
+        });
+      });
+      return out;
+    });
+
+    log(`broshura.bg: found ${brochures.length} brochures on homepage`);
+
+    const toProcess = brochures.slice(0, 15);
+
+    for (const b of toProcess) {
+      log(`  Processing broshura ${b.id} (${b.store})`);
+      const pages = await scrapeBroshuraPages(context, b.url);
+      if (pages.length === 0) {
+        log(`    No pages captured, skipping`);
+        continue;
+      }
+      const storeKey = b.store.toLowerCase().replace(/[^a-z0-9]/g, "") || "broshura";
+      if (!results[storeKey]) results[storeKey] = [];
+      results[storeKey].push({
+        store: b.store,
+        title: `${b.store}`,
+        thumbnail: b.thumbnail || pages[0] || "",
+        url: b.url,
+        validFrom: b.validFrom,
+        validTo: b.validTo,
+        pages,
+      });
+      log(`    Captured ${pages.length} pages`);
+    }
+
+    return results;
+  } catch (err) {
+    log(`broshura.bg error: ${err.message}`);
+    return results;
+  } finally {
+    await page.close();
+  }
+}
+
+async function scrapeBroshuraPages(context, brochureUrl) {
+  const page = await context.newPage();
+  const pageImages = [];
+  const seen = new Set();
+
+  try {
+    page.on("response", async (response) => {
+      const url = response.url();
+      if (!url.match(/\.(jpg|jpeg|png|webp)/i)) return;
+      if (seen.has(url)) return;
+      try {
+        const buf = await response.body();
+        if (buf.length > 40000) {
+          seen.add(url);
+          pageImages.push(url);
+        }
+      } catch {}
+    });
+
+    await page.goto(brochureUrl + "#page-1", {
+      waitUntil: "domcontentloaded",
+      timeout: 45000,
+    });
+    await page.waitForTimeout(4000);
+
+    for (let p = 2; p <= 60; p++) {
+      await page.evaluate((pageNum) => {
+        window.location.hash = `#page-${pageNum}`;
+      }, p);
+      await page.waitForTimeout(600);
+      await page.keyboard.press("ArrowRight").catch(() => {});
+      await page.waitForTimeout(300);
+    }
+
+    await page.waitForTimeout(3000);
+    return [...new Set(pageImages)];
+  } catch (err) {
+    log(`    Page scrape error: ${err.message}`);
+    return [...new Set(pageImages)];
+  } finally {
+    await page.close();
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
