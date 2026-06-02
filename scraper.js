@@ -346,12 +346,16 @@ const context = await browser.newContext({
       try { existing = JSON.parse(fs.readFileSync(OUTPUT_PATH, "utf8")); } catch {}
     }
 
+// Scrape broshura.bg for all other stores
+    const broshura = await scrapeBroshura(context);
+
     const result = {
       updatedAt: new Date().toISOString(),
       date: new Date().toISOString().split("T")[0],
       stores: {
         kaufland: kaufland.length > 0 ? kaufland : existing.stores.kaufland,
         lidl: lidl.length > 0 ? lidl : existing.stores.lidl,
+        ...broshura,  // adds billa, dm, technopolis, etc. as separate store keys
       },
     };
 
