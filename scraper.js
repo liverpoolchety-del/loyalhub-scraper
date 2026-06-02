@@ -197,8 +197,53 @@ async function scrapeLidlListing(context) {
       }
     });
 
-    // Navigate directly to the brochure VIEWER url (the /l/bg/ format)
-    const viewerUrl = "https://www.lidl.bg/l/bg/broshura/01-06-07-06-e5de04/view/menu/page/1";
+// Step 1: Find the current brochure viewer URL automatically
+    let viewerUrl = null;
+
+    // The Lidl leaflet hub page lists current brochures with /l/bg/broshura/ links
+    const hubUrls = [
+      "https://www.lidl.bg/l/bg/",
+      "https://www.lidl.bg/l/bg/broshura",
+    ];
+
+    for (const hub of hubUrls) {
+      try {
+        log(`  Checking hub: ${hub}`);
+        await page.goto(hub, { waitUntil: "domcontentloaded", timeout: 45000 });
+        await page.waitForTimeout(5000);
+
+        // Look for any link matching the /l/bg/broshura/<id>/view pattern
+        const found = await page.evaluate(() => {
+          const links = Array.from(document.querySelectorAll("a[href]"))
+            .map(a => a.href)
+            .filter(h => /\/l\/bg\/broshura\/[^/]+\/view/.test(h));
+          return links[0] || null;
+        });
+
+        if (found) {
+          viewerUrl = found;
+          log(`  Found current brochure URL: ${viewerUrl}`);
+          break;
+        }
+
+        // Also check the page's HTML/scripts for the brochura id pattern
+        const html = await page.content();
+        const match = html.match(/\/l\/bg\/broshura\/([0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[a-f0-9]+)/);
+        if (match) {
+          viewerUrl = `https://www.lidl.bg/l/bg/broshura/${match[1]}/view/menu/page/1`;
+          log(`  Found brochure ID in HTML: ${viewerUrl}`);
+          break;
+        }
+      } catch (e) {
+        log(`  Hub check failed: ${e.message}`);
+      }
+    }
+
+    if (!viewerUrl) {
+      log("  Could not auto-find Lidl brochure URL");
+      return [];
+    }
+
     log(`  Opening viewer: ${viewerUrl}`);
     await page.goto(viewerUrl, { waitUntil: "domcontentloaded", timeout: 45000 });
     await page.waitForTimeout(6000);
